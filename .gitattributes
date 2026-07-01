@@ -1,0 +1,12 @@
+# Treat these as binary: never apply line-ending conversion, diff, or merge.
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+
+# The wiki is a single HTML file; keep newlines consistent (LF) across machines.
+*.html  text eol=lf
