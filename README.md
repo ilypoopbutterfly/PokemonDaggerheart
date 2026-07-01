@@ -12,15 +12,16 @@ the region of **Mimic**. Everything (styles, scripts, and all 16 images) is bake
 
 ## PDFs (required for the download links)
 
-The Mechanics and Party tabs link to character-sheet PDFs by relative path. These files must live
-in the repository root next to `index.html`, or those "Download" buttons will 404. Add:
+The Mechanics and Party tabs link to character-sheet PDFs by relative path. These files live in the
+repository root next to `index.html`, under **version-free static names** so links never need
+updating — when a new version is ready, just overwrite the same filename and commit:
 
-- `trainer_breeder_v4.pdf`
-- `trainer_entertainer_v4.pdf`
-- `trainer_researcher_v4.pdf`
-- `trainer_specialist_v4.pdf`
-- `trainer_master_v4.pdf`
-- `pokemon_companion_sheet_v2.pdf`
+- `trainer_breeder.pdf`
+- `trainer_entertainer.pdf`
+- `trainer_researcher.pdf`
+- `trainer_specialist.pdf`
+- `trainer_master.pdf`
+- `pokemon_companion_sheet.pdf`
 
 ## Editing / updating content
 
