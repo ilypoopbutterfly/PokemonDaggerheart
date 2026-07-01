@@ -1,8 +1,13 @@
 # Pokémon × Daggerheart — GM Wiki
 
 A self-contained, read-only campaign wiki for a Pokémon-flavored *Daggerheart* game set in
-the region of **Mimic**. Everything (styles, scripts, and all 16 images) is baked into a single
-`index.html` file — no database, no build step, no server-side code, and no runtime dependencies.
+the region of **Mimic**. No database, no build step, no server-side code, and no runtime
+dependencies — just static files:
+
+- `index.html` — the presentation shell (all CSS + JS, layout, and tabs).
+- `data.js` — **all campaign content** as a `var data = {…}` object. This is the file you edit.
+- `images/` — extracted portraits, companion sprites, and the type chart.
+- `*.pdf` — downloadable player character sheets (see below).
 
 ## Viewing it
 
@@ -25,19 +30,25 @@ updating — when a new version is ready, just overwrite the same filename and c
 
 ## Editing / updating content
 
-This wiki is **read-only by design**. All content is seeded directly into `index.html` (in the
-`let data = JSON.parse(...)` object and the surrounding markup). The old in-browser form fields and
-"Add / Remove" controls have been hidden — editing on the live site does nothing and is never saved.
+This wiki is **read-only by design** (the old in-browser form fields and "Add / Remove" controls
+are hidden — editing on the live site does nothing and is never saved).
 
-To change the wiki:
+Almost all content lives in **`data.js`**. To change the wiki:
 
-1. Regenerate / edit the `index.html` content.
-2. Commit and push. GitHub Pages redeploys automatically.
+1. Edit `data.js` — it's a plain, pretty-printed `var data = {…}` object (NPCs, party, sessions,
+   arcs, map locations, world lore, etc.). Small edits = small, readable diffs.
+2. To add/replace an image, drop a file in `images/` and point the relevant `"image"` /
+   `"sprite"` value at it (e.g. `"images/portrait-306.jpg"`).
+3. Commit and push. GitHub Pages redeploys automatically (~1 minute).
 
-> Note: earlier versions saved edits to the browser's `localStorage`. That path is intentionally
-> disabled here — the file on disk is the single source of truth.
+A little content still lives in `index.html` itself (the Mechanics rules text, Pokédex, type chart,
+and page scaffolding); edit there for those sections.
+
+> No regeneration needed. Earlier the whole wiki was one giant `index.html` you regenerated wholesale;
+> now content is split out so you make targeted edits instead. Old `localStorage` persistence is
+> disabled — the files on disk are the single source of truth.
 
 ## Structure
 
-Single file, `index.html`, with tabs for: World & Lore, Region Map, Pokédex, NPCs & Factions,
-Party & Pokémon, Domains, Sessions, and Mechanics.
+Tabs: World & Lore, Region Map, Pokédex, NPCs & Factions, Party & Pokémon, Domains, Sessions,
+and Mechanics. Presentation in `index.html`; content in `data.js`; assets in `images/` and the PDFs.
