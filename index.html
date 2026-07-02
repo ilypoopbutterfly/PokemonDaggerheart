@@ -1454,7 +1454,7 @@ GM tracks type chart — players discover effectiveness through play.</div>
 Paralysis — Roll a die each turn. On an odd result, the Pokémon loses its action.
 Poison    — 1d4 damage per turn, escalating +1 each round (round 1: 1d4, round 2: 1d4+1, round 3: 1d4+2, etc.).
 Sleep     — cannot act. Trainer spends their action and makes an Instinct roll (DC 12) to attempt to wake.
-Frozen    — cannot act. Thaws automatically after 1d4 rounds.
+Frozen    — cannot act. On its turn, the target may roll 2d12 (no attribute modifier) against a Difficulty equal to the attack roll that applied Frozen to shatter the ice and break free; otherwise it thaws automatically after 1d4 rounds.
 Confused  — 50% chance Pokémon hits itself (1d6, no type modifier).</div>
       </div>
       <div class="mech-rule-card">
@@ -2254,14 +2254,14 @@ const domainData = {
     {name:'Vine Whip',level:1,type:'Move',cost:'None',range:'Far',effect:'Your Pokémon extends their standard attack to Far range using a lashing vine. On a hit, you may spend 1 Hope to temporarily Restrain the target until the end of their next turn.',id:403},
   ],
   electric:[
-    {name:'Thunder Shock',level:1,type:'Move',cost:'None',range:'Close',effect:'Make an attack roll against one target within Close range. On a success, deal d4 Electric damage.',id:501},
-    {name:'Thunder Wave',level:1,type:'Move',cost:'1 Hope',range:'Close',effect:'Make an attack roll against one target within Close range. On a success, the target gains the Paralysis condition.',id:502},
-    {name:'Static',level:1,type:'Trait',cost:'None',range:'Melee',effect:'When an opponent hits your Pokémon with a Melee attack, roll a d20. On an odd result, the attacker gains the Paralysis condition.',id:503},
+    {name:'Thunder Shock',level:1,type:'Trait',cost:'None',range:'Far',effect:'Your Pokémon\'s standard attack extends to Far range. When your Pokémon hits with a standard attack, roll a d20. On an odd result, the target gains the Paralysis condition.',id:501},
+    {name:'Lightning Rod',level:1,type:'Trait',cost:'None',range:'Close',effect:'When an attack targets an ally within Close range, you may redirect that attack to your Pokémon instead. If the attack deals Electric damage, your Pokémon takes none and gains +2 Evasion until the end of its next turn.',id:502},
+    {name:'Lock-On',level:1,type:'Move',cost:'None',range:'Far',effect:'Your Pokémon fixes a target within Far range in its sights. Make an attack roll. On a success, the target is Marked until the end of the scene: it cannot benefit from being Hidden or unseen, you always know its location, and the next attack roll made against it has advantage.',id:503},
   ],
   ice:[
-    {name:'Powder Snow',level:1,type:'Move',cost:'None',range:'Close (area)',effect:'Make an attack roll against all targets within Close range. On a success, deal d4 Ice damage to each.',id:601},
-    {name:'Icy Wind',level:1,type:'Move',cost:'1 Hope',range:'Far (area)',effect:'Your Pokémon blasts a chilling wind. All targets within Far range have disadvantage on their next action roll.',id:602},
-    {name:'Ice Body',level:1,type:'Trait',cost:'None',range:'—',effect:'When your Pokémon takes Ice damage, they take no damage and instead clear 1 Stress.',id:603},
+    {name:'Frost Breath',level:1,type:'Trait',cost:'None',range:'Far',effect:'Your Pokémon\'s standard attack extends to Far range. When your Pokémon hits with a standard attack, roll a d20. On an odd result, the target gains the Frozen condition.',id:601},
+    {name:'Ice Body',level:1,type:'Trait',cost:'None',range:'—',effect:'After each rest, your Pokémon forms a hardened icy shell. The next attack that would deal damage to it is negated, shattering the shell. The shell reforms after your next rest.',id:602},
+    {name:'Powder Snow',level:1,type:'Move',cost:'1 Hope',range:'Close (area)',effect:'Make an attack roll against all targets within Close range. On a success, deal d4 Ice damage to each; damaged targets have disadvantage on their next action.',id:603},
   ],
   fighting:[
     {name:'Detect',level:1,type:'Trait',cost:'None',range:'—',effect:'When your Pokémon is targeted by an attack from beyond Melee range, you may spend 1 Hope to add d4 to your Evasion against that attack.',id:701},
@@ -2274,9 +2274,9 @@ const domainData = {
     {name:'Smog',level:1,type:'Move',cost:'None',range:'Very Close (area)',effect:'Your Pokémon exhales a noxious cloud of smog. All targets within Very Close range have disadvantage on their next attack roll.',id:803},
   ],
   ground:[
-    {name:'Mud Slap',level:1,type:'Move',cost:'None',range:'Close',effect:'Make an attack roll against one target within Close range. On a success, deal d4 Ground damage and the target has disadvantage on their next attack roll.',id:901},
-    {name:'Sand Attack',level:1,type:'Move',cost:'1 Hope',range:'Close',effect:'Your Pokémon kicks up a cloud of sand. One target within Close range has disadvantage on all attack rolls until they spend an action to clear their vision.',id:902},
-    {name:'Sand Veil',level:1,type:'Trait',cost:'None',range:'—',effect:'When Sandstorm is active, your Pokémon gains +1 Evasion.',id:903},
+    {name:'Mud Slap',level:1,type:'Trait',cost:'None',range:'Far',effect:'Your Pokémon\'s standard attack extends to Far range. When your Pokémon hits with a standard attack, roll a d20. On an odd result, the target has disadvantage on its next attack roll.',id:901},
+    {name:'Dig',level:1,type:'Move',cost:'None',range:'Melee',effect:'Your Pokémon burrows underground and is untargetable until its next turn, when it resurfaces and strikes a target in Melee for d6 Ground damage.',id:902},
+    {name:'Sand Tomb',level:1,type:'Move',cost:'None',range:'Close',effect:'Make an attack roll against one target within Close range. On a success, it is Restrained in a swirl of sand: it cannot flee and takes d4 Ground damage at the start of each of its turns. On its turn, it may make a base roll (2d12, no attribute modifier) against a Difficulty equal to the attack roll that trapped it to break free and end the effect.',id:903},
   ],
   flying:[
     {name:'Keen Eye',level:1,type:'Trait',cost:'None',range:'—',effect:'Opponents never gain advantage on attack rolls against your Pokémon. Your Pokémon cannot be surprised.',id:1001},
@@ -2294,9 +2294,9 @@ const domainData = {
     {name:'Bug Buzz',level:1,type:'Trait',cost:'None',range:'—',effect:'Your Pokémon connects to the local insect network. Once per rest, you may ask the GM one question about the signs of passage of a creature or group in the area — where they went, how many there were, or how long ago they passed through — and receive an honest answer.',id:1203},
   ],
   rock:[
-    {name:'Rock Blast',level:1,type:'Move',cost:'1 Hope',range:'Far',effect:'Make an attack roll against one target within Far range. On a success, deal d6 Rock damage as a barrage of stones strikes the target.',id:1301},
-    {name:'Sandstorm',level:1,type:'Move',cost:'2 Hope',range:'Area',effect:'Whip up a raging sandstorm in the surrounding area. All targets without Rock, Ground, or Steel typing must make a Reaction roll at the start of each turn or take d4 Rock damage.',id:1302},
-    {name:'Sturdy',level:1,type:'Trait',cost:'None',range:'—',effect:'When your Pokémon would be reduced to 0 HP, they instead survive with 1 HP. This can only trigger once per encounter.',id:1303},
+    {name:'Sturdy',level:1,type:'Trait',cost:'None',range:'—',effect:'When your Pokémon would be reduced to 0 HP, it survives with 1 HP instead. This can only trigger once per encounter.',id:1301},
+    {name:'Sandstorm',level:1,type:'Move',cost:'2 Hope',range:'Area',effect:'Whip up a raging sandstorm in the surrounding area. All targets without Rock, Ground, or Steel typing must make a base Reaction roll (2d12, no attribute modifier) against Difficulty 13 at the start of each turn or take d4 Rock damage.',id:1302},
+    {name:'Rock Throw',level:1,type:'Trait',cost:'None',range:'Close',effect:'Your Pokémon\'s standard attack becomes a hurled boulder aimed at a point within Close range. On a hit, deal your standard attack\'s damage to the primary target and half that damage to every other target within Very Close of the impact. You may spend 1 Hope to knock all struck targets Prone.',id:1303},
   ],
   ghost:[
     {name:'Lick',level:1,type:'Move',cost:'None',range:'Melee',effect:'Make an attack roll against one target within Melee range. On a success, deal d4 Ghost damage. Roll a d20 — on an odd result the target gains the Paralysis condition.',id:1401},
@@ -2304,19 +2304,19 @@ const domainData = {
     {name:'Cursed Body',level:1,type:'Trait',cost:'None',range:'—',effect:'When your Pokémon is hit by an attack, roll a d20. On an odd result, the attacker cannot use the same move again until the end of their next turn.',id:1403},
   ],
   dragon:[
-    {name:'Dragon Rage',level:1,type:'Move',cost:'None',range:'Close',effect:'Make an attack roll against one target within Close range. On a success, deal d6 Dragon damage.',id:1501},
-    {name:'Dragon Breath',level:1,type:'Move',cost:'1 Hope',range:'Close (area)',effect:'Your Pokémon exhales a torrent of draconic energy. Make an attack roll against all targets within Close range. On a success, deal d4 Dragon damage to each.',id:1502},
-    {name:'Rivalry',level:1,type:'Trait',cost:'None',range:'—',effect:'When your Pokémon makes an attack against a target of the same type, add d4 to the damage roll.',id:1503},
+    {name:'Dragon Rage',level:1,type:'Move',cost:'None',range:'Self',effect:'Spend your action to build fury, banking a d6 (maximum 3 banked across turns). Release the pool to add all banked dice to one attack\'s damage roll.',id:1501},
+    {name:'Intimidate',level:1,type:'Trait',cost:'None',range:'Melee',effect:'When an enemy enters Melee range of your Pokémon, it is cowed — while it remains in Melee, it has disadvantage on all attack rolls against your Pokémon.',id:1502},
+    {name:'Dragon Breath',level:1,type:'Trait',cost:'None',range:'Close',effect:'Your Pokémon\'s standard attack becomes a spray of draconic energy in a Close-range cone. On a hit, the primary target takes full damage; every other target caught in the cone takes half.',id:1503},
   ],
   dark:[
-    {name:'Bite',level:1,type:'Move',cost:'None',range:'Melee',effect:'Make an attack roll against one target within Melee range. On a success, deal d6 Dark damage. Roll a d20 — on an odd result the target Flinches and loses their next action.',id:1601},
-    {name:'Taunt',level:1,type:'Move',cost:'1 Hope',range:'Close',effect:'Your Pokémon provokes one target within Close range into a rage. That target must target your Pokémon with their next attack and cannot use Traits until the condition ends.',id:1602},
-    {name:'Pickpocket',level:1,type:'Trait',cost:'None',range:'Melee',effect:'When an opponent misses your Pokémon with a Melee attack, you may spend 1 Hope to steal one item from them.',id:1603},
+    {name:'Taunt',level:1,type:'Move',cost:'1 Hope',range:'Close',effect:'Your Pokémon provokes one target within Close range into a rage. Until the start of your Pokémon\'s next turn, it must target your Pokémon with its attacks, cannot use Traits, and cannot flee.',id:1601},
+    {name:'Pickpocket',level:1,type:'Trait',cost:'None',range:'Melee',effect:'When an enemy misses your Pokémon with a Melee attack, you may steal one item or valuable from them.',id:1602},
+    {name:'Feint Attack',level:1,type:'Move',cost:'None',range:'Melee',effect:'Your Pokémon strikes from an unseen angle. The attack ignores any cover or defensive bonus to the target\'s Evasion. If your Pokémon is Hidden, it deals an additional d4 damage.',id:1603},
   ],
   steel:[
-    {name:'Metal Claw',level:1,type:'Move',cost:'None',range:'Melee',effect:'Make an attack roll against one target within Melee range. On a success, deal d6 Steel damage.',id:1701},
-    {name:'Iron Defense',level:1,type:'Move',cost:'1 Hope',range:'Self',effect:'Your Pokémon hardens its body. Until the end of the scene or until your Pokémon takes Severe damage, reduce all incoming damage by d4.',id:1702},
-    {name:'Bulletproof',level:1,type:'Trait',cost:'None',range:'—',effect:'Your Pokémon is immune to ball and bomb moves. When your Pokémon takes damage, reduce it by 1 (minimum 1).',id:1703},
+    {name:'Iron Defense',level:1,type:'Trait',cost:'None',range:'—',effect:'Your Pokémon\'s body is plated in living steel. Reduce all incoming damage by d4 (a hit always deals at least 1 damage).',id:1701},
+    {name:'Heavy Slam',level:1,type:'Trait',cost:'None',range:'Melee',effect:'When your Pokémon hits with its standard attack, it knocks the target back to the edge of Very Close range. You may spend 1 Hope to knock the target Prone instead.',id:1702},
+    {name:'Heavy Metal',level:1,type:'Trait',cost:'None',range:'—',effect:'Your Pokémon cannot be moved, knocked Prone, or forced to flee against its will.',id:1703},
   ],
   fairy:[
     {name:'Disarming Voice',level:1,type:'Trait',cost:'None',range:'Far',effect:'Your Pokémon\'s standard attack extends to Far range. When your Pokémon hits with a standard attack, the target has disadvantage on their next attack roll.',id:1801},
