@@ -107,7 +107,7 @@ var data = {
     },
     {
       "player": "TBD",
-      "char": "Briar",
+      "char": "Briar Gacha",
       "cls": "Master",
       "specialty": "All-rounder trainer chasing the title \u2014 easygoing wanderer who locks in the moment something sparks their curiosity",
       "home": "Sandbar",
