@@ -258,6 +258,35 @@
   details.npc-card > summary .card-title { flex: 1; font-size: 15px; }
   .npc-card-body { padding: 0 1.5rem 1.1rem; }
 
+  /* Trainer ID cards (Party page) */
+  .id-card { padding: 0; overflow: hidden; }
+  .id-strip { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: var(--accent); color: #fff; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.45rem 1.25rem; }
+  .id-strip .id-no { opacity: 0.85; white-space: nowrap; }
+  .id-main { display: flex; gap: 16px; padding: 1.1rem 1.25rem 0.9rem; flex-wrap: wrap; }
+  .id-photo { width: 108px; height: 130px; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid var(--border2); background: var(--bg2); flex-shrink: 0; }
+  .id-fields { flex: 1; min-width: 240px; }
+  .id-name { font-family: var(--font-display); font-size: 19px; color: var(--accent2); letter-spacing: 0.04em; margin-bottom: 0.45rem; }
+  .id-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 18px; font-size: 14px; margin-bottom: 0.5rem; }
+  .id-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-right: 6px; }
+  .id-specialty { font-style: italic; color: var(--text2); font-size: 14px; margin-bottom: 0.45rem; }
+  .id-summary { font-size: 15px; line-height: 1.45; }
+  .id-team { display: flex; align-items: flex-start; gap: 14px; padding: 0.7rem 1.25rem 0.85rem; border-top: 1px dashed var(--border2); }
+  .id-team-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text3); padding-top: 16px; }
+  .id-slots { display: flex; gap: 10px; flex-wrap: wrap; }
+  .id-slot { width: 62px; text-align: center; position: relative; }
+  .id-slot-art { height: 48px; display: flex; align-items: center; justify-content: center; }
+  .id-slot-art img { width: 48px; height: 48px; image-rendering: pixelated; }
+  .id-slot-name { font-family: var(--font-mono); font-size: 9px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .id-shiny { position: absolute; top: 0; right: 6px; color: var(--gold2); font-size: 11px; }
+  .id-pokeball { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border); background: linear-gradient(180deg, rgba(204,0,0,0.08) 0 42%, rgba(180,0,0,0.18) 42% 58%, transparent 58%); position: relative; }
+  .id-pokeball::after { content: ''; position: absolute; top: 50%; left: 50%; width: 7px; height: 7px; border: 2px solid rgba(180,0,0,0.22); border-radius: 50%; background: var(--bg); transform: translate(-50%,-50%); }
+  details.id-backstory { border-top: 1px solid var(--border); }
+  details.id-backstory > summary { cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 8px; padding: 0.6rem 1.25rem; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); }
+  details.id-backstory > summary::-webkit-details-marker { display: none; }
+  details.id-backstory > summary::before { content: '\25B8'; font-size: 11px; transition: transform 0.15s ease; }
+  details.id-backstory[open] > summary::before { transform: rotate(90deg); }
+  .id-backstory-body { padding: 0 1.25rem 1rem; white-space: pre-line; }
+
   /* Badges */
   .badge {
     font-family: var(--font-mono);
@@ -2053,22 +2082,55 @@ function addPlayer() {
 function renderPlayers() {
   const el = document.getElementById('player-list');
   if (!data.players.length) { el.innerHTML = '<div class="empty-state">No players yet. Who\'s joining the journey?</div>'; return; }
-  el.innerHTML = data.players.map(p => `
-    <div class="card">
-      <div class="card-header">
-        <div style="display:flex;gap:14px;align-items:flex-start;flex:1;">
-          ${p.image ? `<img src="${p.image}" style="width:120px;height:auto;object-fit:contain;border-radius:6px;flex-shrink:0;border:1px solid var(--border2);">` : ''}
-          <div>
-            <div class="card-title">${p.char || 'Unnamed Trainer'}</div>
-            <div class="card-meta">${[p.player ? 'Player: ' + p.player : '', p.cls, p.specialty].filter(Boolean).join(' · ')}</div>
-            ${chips(p.pokemon)}
-          </div>
-        </div>
-        <button class="btn btn-sm btn-danger" onclick="del('players',${p.id})">Remove</button>
+  el.innerHTML = data.players.map(p => {
+    const first = (p.char || '').split(/[\s(]/)[0];
+    const team = (data.caught || []).filter(c => c.trainer === first).slice(0, 6);
+    const slots = [];
+    for (let i = 0; i < 6; i++) {
+      const c = team[i];
+      if (c) {
+        const url = caughtSpriteUrl(c);
+        slots.push(`
+          <div class="id-slot" title="${c.species}${c.nickname ? ' — ' + c.nickname : ''}${c.shiny ? ' (shiny)' : ''}">
+            <div class="id-slot-art">${url ? `<img src="${url}" alt="${c.species}">` : ''}</div>
+            ${c.shiny ? '<span class="id-shiny">✦</span>' : ''}
+            <div class="id-slot-name">${c.nickname || c.species}</div>
+          </div>`);
+      } else {
+        slots.push(`
+          <div class="id-slot" title="Empty slot">
+            <div class="id-slot-art"><div class="id-pokeball"></div></div>
+            <div class="id-slot-name">&nbsp;</div>
+          </div>`);
+      }
+    }
+    return `
+    <div class="card id-card">
+      <div class="id-strip">
+        <span>Mimic Region · Trainer License</span>
+        <span class="id-no">ID No. ${String(p.id).padStart(4, '0')}</span>
       </div>
-      ${p.backstory ? `<div class="card-body">${p.backstory}</div>` : ''}
-      ${p.notes ? `<hr class="divider"><div class="card-body gm-note" onclick="this.classList.toggle('revealed')" title="Click to reveal / hide GM-only notes"><span class="gm-note-tag">🔒 GM only — click to reveal</span><div class="gm-note-body" style="color:var(--text2);font-style:italic;">${p.notes}</div></div>` : ''}
-    </div>`).join('');
+      <div class="id-main">
+        ${p.image ? `<img class="id-photo" src="${p.image}" alt="${p.char}">` : ''}
+        <div class="id-fields">
+          <div class="id-name">${p.char || 'Unnamed Trainer'}</div>
+          <div class="id-grid">
+            <div><span class="id-label">Path</span>${p.cls || '—'}</div>
+            <div><span class="id-label">Home</span>${p.home || '—'}</div>
+            <div><span class="id-label">Age</span>${p.age || '—'}</div>
+            <div><span class="id-label">Player</span>${p.player || '—'}</div>
+          </div>
+          ${p.specialty ? `<div class="id-specialty">${p.specialty}</div>` : ''}
+          ${p.summary ? `<div class="id-summary">${p.summary}</div>` : ''}
+        </div>
+      </div>
+      <div class="id-team">
+        <span class="id-team-label">Team</span>
+        <div class="id-slots">${slots.join('')}</div>
+      </div>
+      ${p.backstory ? `<details class="id-backstory"><summary>Full backstory</summary><div class="id-backstory-body">${p.backstory}</div></details>` : ''}
+    </div>`;
+  }).join('');
 }
 
 // Arcs
