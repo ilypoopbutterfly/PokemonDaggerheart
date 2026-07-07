@@ -109,16 +109,16 @@ symbol). Pokémon Center nurses unknowingly file intake reports that feed back t
   Farfetch'd), Hisuian (12), Paldean (1, Annihilape = Fighting/Ghost, base Primeape #0048).
 
 ### Domain cards (Daggerheart)
-Level 1 sets designed for **10 types** (Normal, Fire, Water, Grass, Fighting, Poison, Flying, Psychic,
-Bug, Fairy) using a **Move/Trait framework**. **Eight types remain** (Electric, Ice, Ground, Rock,
-Ghost, Dragon, Dark, Steel) with placeholder cards needing redesign. Higher-level cards (Levels 2–10)
-were stripped from redesigned domains.
+Level 1 and Level 2 sets are designed and shipped for **all 18 types** using a **Move/Trait
+framework**. Levels 3–10 are in progress: the target is **two cards per level up to Level 10** for
+every type. Any Level 3+ cards already present are the new designs — they stay (the old pre-redesign
+high-level cards were deleted long ago; do not treat current ones as leftovers).
 
 Design principles: Moves are **active** (require rolls), Traits are **passive/triggered**; each Level 1
 set has ≥1 Move and ≥1 Trait, mixing damage/utility/control/support. Use real Pokémon move/ability
-names where possible. Dice written without leading numbers ("d8", not "1d8"). Hope costs capped at 2
-and optional (not forced); healing always costs Hope. Ghost cards interact with **Fear dice**; Psychic
-cards with **Hope/Fear outcomes**.
+names where possible. Dice may be written with leading numbers ("1d8" is fine — an earlier no-leading-
+numbers rule was dropped). Hope costs capped at 2 and optional (not forced); healing always costs
+Hope. Ghost cards interact with **Fear dice**; Psychic cards with **Hope/Fear outcomes**.
 
 ### Confirmed mechanics
 - **Catching:** Push-the-roll costs 1 Stress (reroll, take better). Critical failure breaks the Ball or
@@ -128,7 +128,7 @@ cards with **Hope/Fear outcomes**.
   1/2/Legendary numbers are **estimated and need confirmation**.
 
 ### Open threads
-- Redesign domain cards for the 8 remaining types; higher-level cards (Levels 2–10) for all 18 types.
+- Domain cards Levels 3–10 for all 18 types (two cards per level; L1–L2 complete).
 - Confirm extrapolated Stage 1/2/Legendary damage thresholds.
 - Final **in-world strain names** for the Veil Dex (replace region-name placeholders).
 - Confirm Briar's legendary bond with Moltres.
