@@ -1682,6 +1682,7 @@ Narrative aspect connecting players to the storyline, developed with the GM.</di
         .region-legend-item:hover { background: var(--bg3); }
         .region-legend-num { font-family: var(--font-mono); font-size: 10px; color: var(--text3); width: 20px; text-align: right; flex-shrink: 0; }
         .region-legend-gym { margin-left: auto; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; color: var(--gold); white-space: nowrap; }
+        .region-legend-zone { color: var(--accent2); }
         .town-flash { animation: townFlash 1.8s ease; }
         @keyframes townFlash { 0%, 55% { background: rgba(204,0,0,0.14); } 100% { background: transparent; } }
         @media (max-width: 900px) { .region-map-panel { flex-direction: column; } .region-map-legend { position: static; width: 100%; } }
@@ -3212,7 +3213,7 @@ function toggleMapDetail(id) {
 // (Declared inside the render function: the top-level init chain runs before this
 // point in the script, so a top-level const would still be uninitialized there.)
 function regionTowns() { return [
-  {n:1,  name:"Bogen",              id:5002, gym:"",           x:73.23, y:88.66},
+  {n:1,  name:"Bogen",              id:5002, gym:"", zone:4,   x:73.23, y:88.66},
   {n:2,  name:"Blossom Hollow",     id:5021, gym:"",           x:79.40, y:80.41},
   {n:3,  name:"Haywick",            id:5040, gym:"Normal",     x:85.62, y:70.10},
   {n:4,  name:"Clearwater Station", id:5061, gym:"",           x:67.01, y:68.04},
@@ -3222,16 +3223,16 @@ function regionTowns() { return [
   {n:8,  name:"Wickport",           id:5111, gym:"",           x:73.23, y:14.43},
   {n:9,  name:"Mushin",             id:5122, gym:"Fighting",   x:73.23, y:8.25},
   {n:10, name:"Zephyr",             id:5131, gym:"Flying",     x:63.95, y:25.77},
-  {n:11, name:"Corvikeep",          id:5143, gym:"",           x:32.96, y:21.65},
+  {n:11, name:"Corvikeep",          id:5143, gym:"", zone:2,   x:32.96, y:21.65},
   {n:12, name:"Volt City",          id:5161, gym:"Electric",   x:32.96, y:17.53},
   {n:13, name:"Lucent",             id:5171, gym:"",           x:17.51, y:18.56},
   {n:14, name:"Jaku",               id:5182, gym:"",           x:20.57, y:29.90},
   {n:15, name:"Takamori",           id:5192, gym:"",           x:14.40, y:40.21},
-  {n:16, name:"Midori",             id:5202, gym:"",           x:48.45, y:41.24},
+  {n:16, name:"Midori",             id:5202, gym:"", zone:1,   x:48.45, y:41.24},
   {n:17, name:"Kamomo",             id:5205, gym:"",           x:48.45, y:45.36},
   {n:18, name:"Faeroot",            id:5212, gym:"",           x:29.90, y:49.48},
   {n:19, name:"Forktide",           id:5223, gym:"Poison",     x:14.40, y:54.64},
-  {n:20, name:"Sandbar",            id:5232, gym:"",           x:8.23,  y:69.07},
+  {n:20, name:"Sandbar",            id:5232, gym:"", zone:3,   x:8.23,  y:69.07},
   {n:21, name:"Nebaris",            id:5245, gym:"Psychic",    x:39.18, y:73.20},
   {n:22, name:"Goldfin",            id:5251, gym:"",           x:17.51, y:82.47},
   {n:23, name:"Glassbell",          id:5263, gym:"",           x:39.18, y:83.51},
@@ -3255,13 +3256,14 @@ function renderRegionMap() {
     m.style.left = t.x + '%';
     m.style.top = t.y + '%';
     m.textContent = t.n;
-    m.title = t.name + (t.gym ? ' — ' + gymLabel(t.gym) : '');
+    m.title = t.name + (t.gym ? ' — ' + gymLabel(t.gym) : '') + (t.zone ? ' — Starter Zone ' + t.zone : '');
     m.addEventListener('click', () => jumpToTown(t.id));
     wrap.appendChild(m);
     lhtml += `<div class="region-legend-item" onclick="jumpToTown(${t.id})">
       <span class="region-legend-num">${t.n}.</span>
       <span>${t.name}</span>
       ${t.gym ? `<span class="region-legend-gym">${gymLabel(t.gym)}</span>` : ''}
+      ${t.zone ? `<span class="region-legend-gym region-legend-zone">Starter Zone ${t.zone}</span>` : ''}
     </div>`;
   });
   legend.innerHTML = lhtml;
