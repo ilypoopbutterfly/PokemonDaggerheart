@@ -1663,6 +1663,29 @@ Narrative aspect connecting players to the storyline, developed with the GM.</di
         <div class="page-title">Region Map</div>
         <div class="page-sub">Towns, routes, and landmarks of Mimic — in journey order</div>
       </div>
+      <div class="region-map-panel">
+        <div class="region-map-imgwrap" id="region-map-imgwrap">
+          <img src="images/mimic-map.webp" alt="Hex map of the Mimic region" class="region-map-img">
+        </div>
+        <div class="region-map-legend" id="region-map-legend"></div>
+      </div>
+      <style>
+        .region-map-panel { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 1.5rem; }
+        .region-map-imgwrap { position: relative; flex: 1 1 60%; min-width: 0; border: 1px solid var(--border2); border-radius: 8px; overflow: hidden; }
+        .region-map-img { display: block; width: 100%; height: auto; }
+        .region-map-marker { position: absolute; transform: translate(-50%,-50%); width: 21px; height: 21px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); color: var(--accent2); font-family: var(--font-mono); font-size: 10px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; line-height: 1; box-shadow: 0 1px 3px rgba(0,0,0,0.45); transition: transform 0.12s ease; }
+        .region-map-marker:hover { transform: translate(-50%,-50%) scale(1.4); z-index: 2; }
+        .region-map-legend { flex: 1 1 40%; border: 1px solid var(--border2); border-radius: 8px; overflow: hidden; position: sticky; top: 12px; }
+        .region-legend-title { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); background: var(--bg4); padding: 8px 14px; border-bottom: 1px solid var(--border2); }
+        .region-legend-item { display: flex; gap: 8px; align-items: baseline; padding: 4px 12px; cursor: pointer; font-size: 14px; border-bottom: 1px solid var(--border); transition: background 0.12s; }
+        .region-legend-item:last-child { border-bottom: none; }
+        .region-legend-item:hover { background: var(--bg3); }
+        .region-legend-num { font-family: var(--font-mono); font-size: 10px; color: var(--text3); width: 20px; text-align: right; flex-shrink: 0; }
+        .region-legend-gym { margin-left: auto; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; color: var(--gold); white-space: nowrap; }
+        .town-flash { animation: townFlash 1.8s ease; }
+        @keyframes townFlash { 0%, 55% { background: rgba(204,0,0,0.14); } 100% { background: transparent; } }
+        @media (max-width: 900px) { .region-map-panel { flex-direction: column; } .region-map-legend { position: static; width: 100%; } }
+      </style>
       <style>
         .map-add-bar { display:flex; gap:8px; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; }
 
@@ -1909,7 +1932,7 @@ function load() {
     }
   } catch(e) {}
   loadWorldFields();
-  renderNpcs(); renderPlayers(); renderCaught(); renderArcs(); renderSessions(); renderEnc(); renderMechs(); renderMap();
+  renderNpcs(); renderPlayers(); renderCaught(); renderArcs(); renderSessions(); renderEnc(); renderMechs(); renderMap(); renderRegionMap();
   if(data.domainCards){ Object.keys(data.domainCards).forEach(t=>{ if(domainData[t]) domainData[t]=data.domainCards[t]; }); }
 }
 
@@ -3119,7 +3142,7 @@ function renderMap() {
           ? `<span class="mp mp-gym">Gym${l.gymType ? ' · ' + l.gymType : ''}</span>`
           : `<span class="mp mp-${l.status === 'Visited' ? 'visited' : l.status === 'Fleshed Out' ? 'fleshed' : 'planned'}">${l.status}</span>`;
         townCellHtml += `
-          <div class="map-town-entry" onclick="toggleMapDetail('d${l.id}')">
+          <div class="map-town-entry" id="town-${l.id}" onclick="toggleMapDetail('d${l.id}')">
             <div class="map-town-name">${townNum}. ${l.name}</div>
             ${pill}
             ${mapDetail(l)}
@@ -3182,6 +3205,77 @@ function mapDetail(l, prefix) {
 function toggleMapDetail(id) {
   const el = document.getElementById(id);
   if (el) el.classList.toggle('open');
+}
+
+// ===== Region map image: numbered town markers + legend =====
+// Marker positions are % offsets over images/mimic-map.webp, numbered in journey order.
+// (Declared inside the render function: the top-level init chain runs before this
+// point in the script, so a top-level const would still be uninitialized there.)
+function regionTowns() { return [
+  {n:1,  name:"Bogen",              id:5002, gym:"",           x:73.23, y:88.66},
+  {n:2,  name:"Blossom Hollow",     id:5021, gym:"",           x:79.40, y:80.41},
+  {n:3,  name:"Haywick",            id:5040, gym:"Normal",     x:85.62, y:70.10},
+  {n:4,  name:"Clearwater Station", id:5061, gym:"",           x:67.01, y:68.04},
+  {n:5,  name:"Tumbleton",          id:5081, gym:"Ground",     x:60.84, y:59.79},
+  {n:6,  name:"Shockholm",          id:5093, gym:"",           x:85.62, y:47.42},
+  {n:7,  name:"Gloomveil",          id:5102, gym:"Dark",       x:76.29, y:36.08},
+  {n:8,  name:"Wickport",           id:5111, gym:"",           x:73.23, y:14.43},
+  {n:9,  name:"Mushin",             id:5122, gym:"Fighting",   x:73.23, y:8.25},
+  {n:10, name:"Zephyr",             id:5131, gym:"Flying",     x:63.95, y:25.77},
+  {n:11, name:"Corvikeep",          id:5143, gym:"",           x:32.96, y:21.65},
+  {n:12, name:"Volt City",          id:5161, gym:"Electric",   x:32.96, y:17.53},
+  {n:13, name:"Lucent",             id:5171, gym:"",           x:17.51, y:18.56},
+  {n:14, name:"Jaku",               id:5182, gym:"",           x:20.57, y:29.90},
+  {n:15, name:"Takamori",           id:5192, gym:"",           x:14.40, y:40.21},
+  {n:16, name:"Midori",             id:5202, gym:"",           x:48.45, y:41.24},
+  {n:17, name:"Kamomo",             id:5205, gym:"",           x:48.45, y:45.36},
+  {n:18, name:"Faeroot",            id:5212, gym:"",           x:29.90, y:49.48},
+  {n:19, name:"Forktide",           id:5223, gym:"Poison",     x:14.40, y:54.64},
+  {n:20, name:"Sandbar",            id:5232, gym:"",           x:8.23,  y:69.07},
+  {n:21, name:"Nebaris",            id:5245, gym:"Psychic",    x:39.18, y:73.20},
+  {n:22, name:"Goldfin",            id:5251, gym:"",           x:17.51, y:82.47},
+  {n:23, name:"Glassbell",          id:5263, gym:"",           x:39.18, y:83.51},
+  {n:24, name:"Auraville",          id:5272, gym:"",           x:14.40, y:93.81},
+  {n:25, name:"Mt. Lycan",          id:5281, gym:"Elite Four", x:29.90, y:92.78}
+]; }
+
+function gymLabel(gym) {
+  return gym === 'Elite Four' ? 'Elite Four' : 'Gym (' + gym + ')';
+}
+
+function renderRegionMap() {
+  const wrap = document.getElementById('region-map-imgwrap');
+  const legend = document.getElementById('region-map-legend');
+  if (!wrap || !legend) return;
+  wrap.querySelectorAll('.region-map-marker').forEach(m => m.remove());
+  let lhtml = '<div class="region-legend-title">Towns of Mimic · journey order</div>';
+  regionTowns().forEach(t => {
+    const m = document.createElement('button');
+    m.className = 'region-map-marker';
+    m.style.left = t.x + '%';
+    m.style.top = t.y + '%';
+    m.textContent = t.n;
+    m.title = t.name + (t.gym ? ' — ' + gymLabel(t.gym) : '');
+    m.addEventListener('click', () => jumpToTown(t.id));
+    wrap.appendChild(m);
+    lhtml += `<div class="region-legend-item" onclick="jumpToTown(${t.id})">
+      <span class="region-legend-num">${t.n}.</span>
+      <span>${t.name}</span>
+      ${t.gym ? `<span class="region-legend-gym">${gymLabel(t.gym)}</span>` : ''}
+    </div>`;
+  });
+  legend.innerHTML = lhtml;
+}
+
+function jumpToTown(id) {
+  const entry = document.getElementById('town-' + id);
+  if (!entry) return;
+  const detail = document.getElementById('d' + id);
+  if (detail) detail.classList.add('open');
+  entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  entry.classList.remove('town-flash');
+  void entry.offsetWidth;
+  entry.classList.add('town-flash');
 }
 
 // ===== Read-only presentation layer =====
