@@ -49,12 +49,12 @@ var data = {
   ],
   "players": [
     {
-      "player": "TBD",
+      "player": "Eric",
       "char": "Axel (Clarence Otto)",
       "cls": "Entertainer",
       "specialty": "Training Pok\u00e9mon to perform \u2014 dreams of training Pok\u00e9mon to drive",
       "home": "Bogen",
-      "age": "",
+      "age": "18",
       "summary": "Bogen's jungle-floor mail boy \u2014 lives in a garage, builds his own bike, watches every race, and picked Mudkip because he smiles. Dreams of teaching Pok\u00e9mon to drive.",
       "pokemon": "Mudkip",
       "backstory": "Goes by Axel \u2014 born name is Clarence Otto. Lives in an old garage on the jungle floor of Bogen, his bed on the car lift. Delivers mail around town for pocket money. Has been building his own bike (no motor yet). Watches every race on a tiny TV. Told everyone he graduated early \u2014 he did not graduate. Visits his grandma often and she bakes cookies every time. Picked Mudkip because he smiles. Idolizes Maximus, a famous red-haired racer with a white sports car with red flames and a flame bandana.",
@@ -63,12 +63,12 @@ var data = {
       "image": "images/portrait-301.jpg"
     },
     {
-      "player": "TBD",
+      "player": "Zack",
       "char": "Nea Stone",
       "cls": "Researcher",
       "specialty": "Ruins, dig sites, fossil history \u2014 channels ancient energy to create TMs",
       "home": "Bogen",
-      "age": "",
+      "age": "18",
       "summary": "Shaved head, amber eyes, sharp edges \u2014 and ferociously loyal underneath. Babies her Pok\u00e9mon. If it's ancient, buried, or sealed shut, she's already found a way inside.",
       "pokemon": "Charmander",
       "backstory": "Shaved head. Amber eyes \u2014 color of fossilized resin with something caught inside. Sharp-edged exterior, ferociously loyal underneath. Babies her Pokemon in a way that surprises people who misjudge her. Full name Nea Stone. Parents are Andrea and Gale Stone \u2014 archaeologists currently stationed in Lucent (Town 13), the northern crystal and fossil research town. They share an Alakazam as a working research assistant. Brilliant people, not especially present ones. Living with her uncle Sutton Holloway in Bogen \u2014 her mother's brother. His house is the biggest in Bogen: fancy, modern, built into the trees. They coexist comfortably and at a distance. First visited Bogen two years ago with her parents. Found the Motley Wilds ruins. Engineered a reason to stay. Tattoos on her forearms and right hand \u2014 passes them off as rebellious. Her passion is ruins, dig sites, anything from the past.",
@@ -77,7 +77,7 @@ var data = {
       "image": "images/portrait-302.jpg"
     },
     {
-      "player": "TBD",
+      "player": "Lacey",
       "char": "Coral",
       "cls": "Breeder",
       "specialty": "Pokemon medicine and care \u2014 the Pokemon doctor of a people doctor family",
@@ -91,7 +91,7 @@ var data = {
       "image": "images/portrait-303.jpg"
     },
     {
-      "player": "TBD",
+      "player": "Patrick",
       "char": "Llewellyn Morse",
       "cls": "Specialist",
       "specialty": "Ghost-type Specialist",
@@ -106,7 +106,7 @@ var data = {
       "bio": ""
     },
     {
-      "player": "TBD",
+      "player": "Hal",
       "char": "Briar Gacha",
       "cls": "Master",
       "specialty": "All-rounder trainer chasing the title \u2014 easygoing wanderer who locks in the moment something sparks their curiosity",
