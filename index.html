@@ -605,6 +605,17 @@
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
   }
+  details.mech-section > summary.mech-category-header {
+    cursor: pointer; user-select: none; list-style: none;
+    display: flex; align-items: center; gap: 10px;
+    margin: 1.1rem 0 0.75rem;
+  }
+  details.mech-section > summary.mech-category-header::-webkit-details-marker { display: none; }
+  details.mech-section > summary.mech-category-header::before {
+    content: '\25B8'; font-size: 12px; color: var(--text3); transition: transform 0.15s ease;
+  }
+  details.mech-section[open] > summary.mech-category-header::before { transform: rotate(90deg); }
+  .mech-section-body { padding-left: 2px; }
   .mech-rule-card {
     background: var(--bg3);
     border: 1px solid var(--border);
@@ -1339,7 +1350,16 @@ The jungle canopy starter town where the campaign begins. The Day of First Bonds
         <div class="page-sub">Daggerheart adaptations and Pokémon-specific rules for Mimic</div>
       </div>
 
-      <div class="mech-category-header">Pokémon Combat Stats</div>
+      <details class="mech-section">
+        <summary class="mech-category-header">Items</summary>
+        <div class="mech-section-body">
+          <div id="mech-list"></div>
+        </div>
+      </details>
+
+      <details class="mech-section">
+        <summary class="mech-category-header">Pokémon Combat Stats</summary>
+        <div class="mech-section-body">
 
       <div class="mech-rule-card">
         <div class="mech-rule-header">
@@ -1408,51 +1428,6 @@ The jungle canopy starter town where the campaign begins. The Day of First Bonds
         <div class="mech-rule-body">Pokémon do not add any bonuses to their attack rolls or damage rolls unless explicitly stated by a Move or Trait card. All attacks use the standard 2d12 roll with Hope or Fear as normal.<br><br>When a Pokémon uses a standard attack, it deals damage of its own type. If a Pokémon has two types, the player or trainer chooses which type the attack deals at the time of the attack.<br><br>A Pokémon's standard attack starts at Melee range unless otherwise specified by a Move or Trait card.</div>
       </div>
 
-      <div class="mech-category-header">Core Daggerheart Adaptations</div>
-      <div class="mech-rule-card">
-        <div class="mech-rule-header">
-          <div class="mech-rule-title">Hope & Fear — the dual dice system</div>
-          <span class="badge badge-teal">Core</span>
-        </div>
-        <div class="mech-rule-body">Players roll 2d12 — one Hope die, one Fear die. The higher result determines success; which die is higher determines narrative tone. Hope = player advantage, Fear = GM gets a Fear token to spend.
-
-Adaptation: Fear tokens can be spent to trigger wild Pokémon ambushes, weather events, or enemy trainer interruptions mid-scene.</div>
-      </div>
-      <div class="mech-rule-card">
-        <div class="mech-rule-header">
-          <div class="mech-rule-title">Action tokens & Pokémon turns</div>
-          <span class="badge badge-teal">Core</span>
-        </div>
-        <div class="mech-rule-body">Each trainer gets their action + their active Pokémon action per round. Swapping Pokémon costs the trainer action. Pokémon act on trainer initiative but use their own move set.
-
-Pokémon moves map to Daggerheart attack/utility actions — damage, conditions, or narrative effects.</div>
-      </div>
-      <div class="mech-rule-card">
-        <div class="mech-rule-header">
-          <div class="mech-rule-title">Stress & Pokémon bond</div>
-          <span class="badge badge-teal">Core</span>
-        </div>
-        <div class="mech-rule-body">Trainers gain Stress when their Pokémon faints or is in danger. A Pokémon fainting fills 2 Stress. Full Stress = trainer breakdown (narrative consequence, not elimination).</div>
-      </div>
-      <div class="mech-rule-card">
-        <div class="mech-rule-header">
-          <div class="mech-rule-title">Conditions</div>
-          <span class="badge badge-teal">Core</span>
-        </div>
-        <div class="mech-rule-body">Restrained — The target cannot move from their current position and cannot flee combat. The condition ends when another effect removes it.
-
-Vulnerable — Attacks against this target have advantage until the condition ends.
-
-Stunned — The target cannot take actions or reactions until the condition ends.
-
-Hidden — The target cannot be targeted by attacks or abilities until they are revealed or act.
-
-Impaired — The target has disadvantage on all action rolls until the condition ends.
-
-Threatened — The target has disadvantage on attacks against anyone other than the source of this condition.</div>
-      </div>
-
-      <div class="mech-category-header">Pokémon-Specific Rules</div>
       <div class="mech-rule-card">
         <div class="mech-rule-header">
           <div class="mech-rule-title">Type advantages</div>
@@ -1475,16 +1450,48 @@ GM tracks type chart — players discover effectiveness through play.</div>
       </div>
       <div class="mech-rule-card">
         <div class="mech-rule-header">
-          <div class="mech-rule-title">Status conditions</div>
+          <div class="mech-rule-title">Conditions &amp; Status Effects</div>
           <span class="badge badge-gold">Pokémon Rule</span>
         </div>
-        <div class="mech-rule-body">Burn      — 1d4 damage at start of each turn. Physical damage halved.
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:6px 24px;">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Daggerheart Conditions</div>
+            <div class="mech-rule-body">Restrained — The target cannot move from their current position and cannot flee combat. The condition ends when another effect removes it.
+
+Vulnerable — Attacks against this target have advantage until the condition ends.
+
+Stunned — The target cannot take actions or reactions until the condition ends.
+
+Hidden — The target cannot be targeted by attacks or abilities until they are revealed or act.
+
+Impaired — The target has disadvantage on all action rolls until the condition ends.
+
+Threatened — The target has disadvantage on attacks against anyone other than the source of this condition.</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Pokémon Status Conditions</div>
+            <div class="mech-rule-body">Burn — 1d4 damage at start of each turn. Physical damage halved.
+
 Paralysis — Roll a die each turn. On an odd result, the Pokémon loses its action.
-Poison    — 1d4 damage per turn, escalating +1 each round (round 1: 1d4, round 2: 1d4+1, round 3: 1d4+2, etc.).
-Sleep     — cannot act. Trainer spends their action and makes an Instinct roll (DC 12) to attempt to wake.
-Frozen    — cannot act. On its turn, the target may roll 2d12 (no attribute modifier) against a Difficulty equal to the attack roll that applied Frozen to shatter the ice and break free; otherwise it thaws automatically after 1d4 rounds.
-Confused  — 50% chance Pokémon hits itself (1d6, no type modifier).</div>
+
+Poison — 1d4 damage per turn, escalating +1 each round (round 1: 1d4, round 2: 1d4+1, round 3: 1d4+2, etc.).
+
+Sleep — cannot act. Trainer spends their action and makes an Instinct roll (DC 12) to attempt to wake.
+
+Frozen — cannot act. On its turn, the target may roll 2d12 (no attribute modifier) against a Difficulty equal to the attack roll that applied Frozen to shatter the ice and break free; otherwise it thaws automatically after 1d4 rounds.
+
+Confused — 50% chance Pokémon hits itself (1d6, no type modifier).</div>
+          </div>
+        </div>
       </div>
+
+        </div>
+      </details>
+
+      <details class="mech-section">
+        <summary class="mech-category-header">Pokémon-Specific Rules</summary>
+        <div class="mech-section-body">
+
       <div class="mech-rule-card">
         <div class="mech-rule-header">
           <div class="mech-rule-title">Catching Pokémon</div>
@@ -1531,7 +1538,43 @@ Crossing a threshold has narrative consequences — it reflects a trainer becomi
 Training thresholds: During a long rest, a trainer may attempt a Strength or Instinct roll to push their endurance. On a success, their threshold improves for the next session. Repeated successes may result in a permanent increase, at GM discretion.</div>
       </div>
 
-      <div class="mech-category-header">Character Info</div>
+        </div>
+      </details>
+
+      <details class="mech-section">
+        <summary class="mech-category-header">Core Daggerheart Adaptations</summary>
+        <div class="mech-section-body">
+      <div class="mech-rule-card">
+        <div class="mech-rule-header">
+          <div class="mech-rule-title">Hope & Fear — the dual dice system</div>
+          <span class="badge badge-teal">Core</span>
+        </div>
+        <div class="mech-rule-body">Players roll 2d12 — one Hope die, one Fear die. The higher result determines success; which die is higher determines narrative tone. Hope = player advantage, Fear = GM gets a Fear token to spend.
+
+Adaptation: Fear tokens can be spent to trigger wild Pokémon ambushes, weather events, or enemy trainer interruptions mid-scene.</div>
+      </div>
+      <div class="mech-rule-card">
+        <div class="mech-rule-header">
+          <div class="mech-rule-title">Action tokens & Pokémon turns</div>
+          <span class="badge badge-teal">Core</span>
+        </div>
+        <div class="mech-rule-body">Each trainer gets their action + their active Pokémon action per round. Swapping Pokémon costs the trainer action. Pokémon act on trainer initiative but use their own move set.
+
+Pokémon moves map to Daggerheart attack/utility actions — damage, conditions, or narrative effects.</div>
+      </div>
+      <div class="mech-rule-card">
+        <div class="mech-rule-header">
+          <div class="mech-rule-title">Stress & Pokémon bond</div>
+          <span class="badge badge-teal">Core</span>
+        </div>
+        <div class="mech-rule-body">Trainers gain Stress when their Pokémon faints or is in danger. A Pokémon fainting fills 2 Stress. Full Stress = trainer breakdown (narrative consequence, not elimination).</div>
+      </div>
+        </div>
+      </details>
+
+      <details class="mech-section">
+        <summary class="mech-category-header">Character Info</summary>
+        <div class="mech-section-body">
       <div class="mech-rule-card">
         <div class="mech-rule-header">
           <div class="mech-rule-title">Character creation — 9 steps</div>
@@ -1574,9 +1617,14 @@ TBD — significant design challenge. To be resolved.
 Step 9 — Create your connections
 Narrative aspect connecting players to the storyline, developed with the GM.</div>
       </div>
-      <div class="mech-category-header">Pokémon Trainer Character Sheets</div>
+        </div>
+      </details>
+
+      <details class="mech-section">
+        <summary class="mech-category-header">Sheets &amp; Downloads</summary>
+        <div class="mech-section-body">
       <div class="mech-rule-card">
-        <div class="mech-rule-title" style="margin-bottom:10px;">Download by subclass</div>
+        <div class="mech-rule-title" style="margin-bottom:10px;">Trainer sheets — download by subclass</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
             <div><div style="font-size:13px;color:var(--accent2);font-family:var(--font-display);">Breeder</div><div class="entry-meta">Field Medic · Everyone's Gotta Eat · Advanced Care · Master Chef</div></div>
@@ -1605,8 +1653,6 @@ Narrative aspect connecting players to the storyline, developed with the GM.</di
         </div>
       </div>
 
-      
-      <div class="mech-category-header">Pokémon Companion Sheet</div>
       <div class="mech-rule-card" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
         <div>
           <div class="mech-rule-title" style="margin-bottom:6px;">Pokémon Companion Sheet</div>
@@ -1615,45 +1661,8 @@ Narrative aspect connecting players to the storyline, developed with the GM.</di
         <a href="pokemon_companion_sheet.pdf" target="_blank" style="flex-shrink:0;font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;padding:8px 16px;border-radius:4px;border:1px solid var(--accent3);background:rgba(126,200,122,0.1);color:var(--accent2);text-decoration:none;white-space:nowrap;">Download PDF</a>
       </div>
 
-      
-
-      
-
-      <div class="mech-category-header">Custom Rules</div>
-      <div class="add-bar">
-        <button class="btn btn-primary" onclick="showMechForm()">+ Add custom rule</button>
-        <select id="mech-filter" onchange="renderMechs()" style="width:160px;">
-          <option value="">All categories</option>
-          <option value="Core">Core Daggerheart</option>
-          <option value="Pokémon">Pokémon Rule</option>
-          <option value="House">House Rule</option>
-          <option value="Item">Items & Equipment</option>
-          <option value="Combat">Combat</option>
-          <option value="Social">Social / Roleplay</option>
-        </select>
-      </div>
-
-      <div id="mech-form" style="display:none;" class="form-panel">
-        <div class="form-title">New Rule</div>
-        <div class="two-col">
-          <div class="field-group"><label class="field-label">Rule name</label><input type="text" id="mech-name" placeholder="e.g. Berry healing, Mega Evolution"></div>
-          <div class="field-group"><label class="field-label">Category</label>
-            <select id="mech-cat">
-              <option value="Core">Core Daggerheart</option>
-              <option value="Pokémon">Pokémon Rule</option>
-              <option value="House">House Rule</option>
-              <option value="Item">Items & Equipment</option>
-              <option value="Combat">Combat</option>
-              <option value="Social">Social / Roleplay</option>
-            </select>
-          </div>
         </div>
-        <div class="field-group"><label class="field-label">Rule description</label><textarea id="mech-body" rows="4" placeholder="How does this mechanic work?"></textarea></div>
-        <div class="field-group"><label class="field-label">Designer notes / open questions</label><textarea id="mech-notes" rows="2" placeholder="Things still being playtested, edge cases, GM reminders..."></textarea></div>
-        <div style="display:flex;gap:8px;margin-top:.25rem;"><button class="btn btn-primary" onclick="addMech()">Save rule</button><button class="btn" onclick="hideMechForm()">Cancel</button></div>
-      </div>
-
-      <div id="mech-list"></div>
+      </details>
 
     </div>
 
@@ -2264,10 +2273,12 @@ function addMech() {
   clearFields(['mech-name','mech-body','mech-notes']);
 }
 function renderMechs() {
-  const f = document.getElementById('mech-filter').value;
+  const filterEl = document.getElementById('mech-filter');
+  const f = filterEl ? filterEl.value : '';
   const list = f ? data.mechs.filter(m => m.cat === f) : data.mechs;
   const el = document.getElementById('mech-list');
-  if (!list.length) { el.innerHTML = '<div class="empty-state">No custom rules yet. The rulebook is yours to write.</div>'; return; }
+  if (!el) return;
+  if (!list.length) { el.innerHTML = '<div class="empty-state">No items yet.</div>'; return; }
   const catColors = { Core:'badge-teal', Pokémon:'badge-gold', House:'badge-purple', Item:'badge-green', Combat:'badge-coral', Social:'badge-gray' };
   el.innerHTML = list.map(m => `
     <div class="mech-rule-card">

@@ -184,6 +184,20 @@ var data = {
       "body": "Feeds up to 3 Pok\u00e9mon per long rest. Grants a Pok\u00e9Chow Die (d6 at Foundation, d8 at Mastery) that can be spent to add to an attack/damage roll or to clear that much Stress. Requires berries to craft.",
       "notes": "",
       "id": 406
+    },
+    {
+      "name": "Evolution Stones & Items",
+      "cat": "Item",
+      "body": "Using the matching stone or item on a compatible Pok\u00e9mon triggers evolution on the spot \u2014 though evolution is always played as a scene, never just a stat swap.\n\nEVOLUTION STONES\nFire Stone \u2014 Growlithe, Vulpix, Eevee (Flareon)\nWater Stone \u2014 Staryu, Eevee (Vaporeon)\nThunder Stone \u2014 Pikachu, Charjabug, Eelektrik, Magneton, Eevee (Jolteon)\nLeaf Stone \u2014 Gloom (Vileplume), Eevee (Leafeon)\nMoon Stone \u2014 Nidorina, Nidorino, Jigglypuff\nSun Stone \u2014 Gloom (Bellossom), Cottonee\nIce Stone \u2014 Cetoddle, Eevee (Glaceon)\nShiny Stone \u2014 Togetic\nDusk Stone \u2014 Misdreavus, Lampent, Doublade\nDawn Stone \u2014 Kirlia \u2642 (Gallade), Snorunt \u2640 (Froslass)\n\nEVOLUTION ITEMS\nKing's Rock \u2014 Slowpoke (Slowking)\nMetal Coat \u2014 Onix (Steelix), Scyther (Scizor)\nDragon Scale \u2014 Seadra (Kingdra)\nRazor Claw \u2014 Sneasel (Weavile)\nPrism Scale \u2014 Feebas (Milotic)\nBond Cord \u2014 a woven cord that glows when trainer and Pok\u00e9mon grip it together. Evolves Pok\u00e9mon whose bond has outgrown their form: Machoke (Machamp), Kadabra (Alakazam), Haunter (Gengar).",
+      "notes": "",
+      "id": 407
+    },
+    {
+      "name": "Fossils & Revival",
+      "cat": "Item",
+      "body": "Fossils are ancient Pok\u00e9mon preserved in stone \u2014 found in ruins, dig sites, cliff faces, and the deep places of Mimic. A fossil can be revived into a living Stage 0 Pok\u00e9mon at a proper research facility (Clearwater Station, or the fossil labs of Lucent). A revived Pok\u00e9mon joins its reviver as a caught companion.\n\nHelix Fossil \u2014 Omanyte \u00b7 Dome Fossil \u2014 Kabuto \u00b7 Old Amber \u2014 Aerodactyl\nSkull Fossil \u2014 Cranidos \u00b7 Armor Fossil \u2014 Shieldon \u00b7 Root Fossil \u2014 Lileep\nClaw Fossil \u2014 Anorith \u00b7 Cover Fossil \u2014 Tirtouga \u00b7 Plume Fossil \u2014 Archen\nJaw Fossil \u2014 Tyrunt \u00b7 Sail Fossil \u2014 Amaura\n\nFossils this old are fragile \u2014 transporting one safely can be an adventure of its own.",
+      "notes": "",
+      "id": 408
     }
   ],
   "domainCards": {},
