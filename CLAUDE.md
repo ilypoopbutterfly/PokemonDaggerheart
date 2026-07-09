@@ -17,7 +17,8 @@ deps) for a Pokémon-flavored *Daggerheart* game in the region **Mimic**.
 - `data.js` — **most campaign content**, as a pretty-printed `var data = {…}` (keys: `world`, `npcs`,
   `players`, `arcs`, `sessions`, `encounters`, `mechs`, `domainCards`, `caught`). Loaded via
   `<script src="data.js">` right before the main script. **This is the file to edit for most changes.**
-- `images/` — extracted assets: `portrait-30x.jpg` (NPCs), `sprite-50x.*` (companions), `type-chart.jpg`.
+- `images/` — extracted assets: `portrait-30x.jpg` (NPCs), `sprite-50x.*` (companions), `type-chart.jpg`,
+  `mimic-map.webp` (region map), and `dex/` (all 284 Pokédex sprites, vendored locally — never hotlink).
 - `*.pdf` — player character sheets under **version-free static names**; to update, overwrite the same
   filename and commit (never rename, so links never break).
 - `.gitattributes` pins PDFs/images as binary and `index.html` to LF (the machine has global
