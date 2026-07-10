@@ -433,10 +433,6 @@
     border-radius: 8px;
   }
 
-  /* World form special */
-  .world-form textarea { min-height: 80px; }
-  .world-form .lore-area { min-height: 130px; }
-
   /* Secret GM note */
 
   .gm-secret {
@@ -498,6 +494,160 @@
   }
 
   /* Titan Gate decoration */
+  .world-hero {
+    text-align: center;
+    padding: 2.5rem 1rem 2rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, var(--bg2), var(--bg));
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
+    border-radius: 10px;
+  }
+  .world-hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+  }
+  .world-hero-name {
+    font-family: var(--font-display);
+    font-size: 40px;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+    line-height: 1.15;
+  }
+  .world-hero-region {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+  .world-hero-blurb {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text3);
+    max-width: 480px;
+    margin: 0.5rem auto 0;
+    line-height: 1.6;
+  }
+  .world-hero-tone {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text2);
+    max-width: 560px;
+    margin: 1.4rem auto 0;
+    line-height: 1.7;
+    position: relative;
+    padding: 0 0.5rem;
+  }
+  .world-hero-tone::before, .world-hero-tone::after { color: var(--accent3); opacity: 0.6; font-family: Georgia, serif; }
+  .world-hero-tone::before { content: '\201C'; }
+  .world-hero-tone::after { content: '\201D'; }
+
+  .world-conflict {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 1.75rem;
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .world-conflict-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent3);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .world-lore-text {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 720px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .world-vocations-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 2rem;
+    max-width: 720px;
+  }
+  .world-vocation-pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--accent2);
+    background: var(--bg3);
+    cursor: default;
+  }
+
+  .world-zones-header {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.35rem;
+  }
+  .world-zones-sub {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text3);
+    font-style: italic;
+    margin-bottom: 1.25rem;
+  }
+  .world-zones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .zone-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold2);
+    border-radius: 8px;
+    padding: 1.1rem 1.25rem;
+  }
+  .zone-card-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .zone-card-towns {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--accent2);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .zone-card-meta {
+    font-size: 12px;
+    color: var(--text3);
+    margin-bottom: 0.6rem;
+    line-height: 1.6;
+  }
+  .zone-card-meta b { color: var(--text2); font-weight: 600; }
+  .zone-card-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
   .titan-gate-deco {
     font-family: var(--font-display);
     font-size: 11px;
@@ -667,24 +817,6 @@
     /* An add-bar that now holds only a hidden button should not reserve space */
     .add-bar:empty { display: none; }
 
-    /* World tab: render the old form fields as plain, non-editable text */
-    .world-form input,
-    .world-form textarea {
-      border: none !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      outline: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      resize: none !important;
-      overflow: hidden !important;
-      width: 100%;
-      color: var(--text) !important;
-      font-family: var(--font-body) !important;
-      cursor: default !important;
-    }
-    .world-form input { font-size: 1.05rem; }
-    .world-form textarea { line-height: 1.65; white-space: pre-wrap; }
   </style>
 </head>
 <body>
@@ -747,65 +879,7 @@
 
     <!-- WORLD & LORE -->
     <div id="sec-world" class="section active">
-      <div class="page-header">
-        <div class="page-title">World & Lore</div>
-        <div class="page-sub">The bones of the campaign — setting, history, and secrets</div>
-      </div>
-      <div class="world-form">
-        <div class="two-col">
-          <div class="field-group">
-            <label class="field-label">Campaign name</label>
-            <input type="text" id="world-name" placeholder="e.g. The Ashen Frontier" oninput="save()">
-          </div>
-          <div class="field-group">
-            <label class="field-label">Region name</label>
-            <input type="text" id="world-region" placeholder="e.g. Mimic" oninput="save()">
-          </div>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Tone & themes</label>
-          <input type="text" id="world-tone" placeholder="e.g. Dark mystery, hope vs corruption, bonds between trainer and Pokémon" oninput="save()">
-        </div>
-        <div class="field-group">
-          <label class="field-label">Core conflict</label>
-          <textarea id="world-conflict" rows="2" placeholder="What is the central struggle driving the campaign?" oninput="save()"></textarea>
-        </div>
-        <div class="titan-gate-deco">✦ &nbsp; WORLD LORE &nbsp; ✦</div>
-        <div class="field-group">
-          <label class="field-label">World lore & history</label>
-          <textarea id="world-lore" class="lore-area" rows="6" placeholder="Key historical events, legends, mysteries, the coming-of-age tradition..." oninput="save()">STARTER ZONES — The Day of First Bonds
-
-Mimic is divided into four starter zones, each serving a quadrant of the region. On the Day of First Bonds, new trainers aged 18 gather at their zone's starter town to receive their first Pokémon from the local professor. Each zone has its own regional traditions around the ceremony.
-
-Zone 1 (Northeast) — Midori, Boosong
-Professor Thaniel Sheng. Starters: Rowlet, Torchic, Piplup.
-A riverside bamboo wetlands town on the northern bank of The Mizu. The ceremony here is serene and communal — paper lanterns set on the river, starters presented at dawn.
-
-Zone 2 (Northwest) — Corvikeep, Petalbend
-Professor Felix Mewton. Starters: Sprigatito, Litten, Popplio.
-A grand castle town at the edge of the Petalbend valley. The ceremony is formal and ceremonial — a knightly tradition, starters presented in the castle courtyard beneath Corviknight in the sky.
-
-Zone 3 (Southwest) — Sandbar, Twisselmon
-Professor Evangeline Keely. Starters: Bulbasaur, Cyndaquil, Froakie.
-A tidal river-mouth town that partially submerges at high tide. The ceremony is timed entirely around the tides — it can only happen at low tide, in a specific window each year.
-
-Zone 4 (Southeast) — Bogen, Motley Wilds
-Professor Jayne Willow. Starters: Grookey, Charmander, Mudkip.
-The jungle canopy starter town where the campaign begins. The Day of First Bonds here coincides with the Motley Wilds coming alive at night — bioluminescent spores, lanterns, the jungle itself celebrating.</textarea>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Trainer paths / vocations</label>
-          <textarea id="world-vocations" rows="5" placeholder="Pokémon Master, Professor, Breeder, Gym Leader, Performer, Ranger..." oninput="save()"></textarea>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Locations</label>
-          <textarea id="world-locations" rows="4" placeholder="Key towns, dungeons, landmarks... e.g. Bogen, the Motley Wilds, the Titan Gate..." oninput="save()"></textarea>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Daggerheart mechanics notes</label>
-          <textarea id="world-mechanics" rows="3" placeholder="How you're adapting Daggerheart rules — Pokeballs, type advantages, taming, habitat zones..." oninput="save()"></textarea>
-        </div>
-      </div>
+      <div id="world-content"></div>
     </div>
 
 
@@ -1945,28 +2019,54 @@ function load() {
       // World fields: seeded data always wins — do not restore from localStorage
     }
   } catch(e) {}
-  loadWorldFields();
+  renderWorld();
   renderNpcs(); renderPlayers(); renderCaught(); renderArcs(); renderSessions(); renderEnc(); renderMechs(); renderMap(); renderRegionMap();
   if(data.domainCards){ Object.keys(data.domainCards).forEach(t=>{ if(domainData[t]) domainData[t]=data.domainCards[t]; }); }
 }
 
-function save() {
-  saveWorldFields();
-}
+const VOCATION_DESC = {
+  'Master': 'Seeks to be the very best. Pinnacle is Regional Champion.',
+  'Researcher': 'Scholars of Pokémon history, behavior, and environments.',
+  'Breeder': 'Specialists in care, raising, and wellbeing of Pokémon.',
+  'Specialist': 'Masters one type, opens their own Gym.',
+  'Entertainer': 'Trains Pokémon to dazzle in Showcases and Contests.',
+  'Rebel': 'Guardians of the wild, protectors of people and Pokémon in dangerous regions.'
+};
 
-function saveWorldFields() {
-  ['name','region','tone','conflict','lore','vocations','locations','mechanics','secrets'].forEach(f => {
-    const el = document.getElementById('world-' + f);
-    if (el) data.world[f] = el.value;
-  });
-  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
-}
+function renderWorld() {
+  const el = document.getElementById('world-content');
+  if (!el) return;
+  const w = data.world;
+  const vocations = (w.vocations || '').split('·').map(s => s.trim()).filter(Boolean);
+  el.innerHTML = `
+    <div class="world-hero">
+      <div class="world-hero-eyebrow">✦ &nbsp; Pokémon &times; Daggerheart &nbsp; ✦</div>
+      <div class="world-hero-name">${w.name || ''}</div>
+      <div class="world-hero-region">${w.region || ''}</div>
+      ${w.regionBlurb ? `<div class="world-hero-blurb">${w.regionBlurb}</div>` : ''}
+      ${w.tone ? `<div class="world-hero-tone">${w.tone}</div>` : ''}
+    </div>
 
-function loadWorldFields() {
-  ['name','region','tone','conflict','lore','vocations','locations','mechanics','secrets'].forEach(f => {
-    const el = document.getElementById('world-' + f);
-    if (el && data.world[f] !== undefined) el.value = data.world[f];
-  });
+    ${w.conflict ? `<div class="world-conflict"><div class="world-conflict-label">The Core Conflict</div>${w.conflict}</div>` : ''}
+
+    <div class="titan-gate-deco">✦ &nbsp; WORLD LORE &nbsp; ✦</div>
+    ${w.lore ? `<div class="world-lore-text">${w.lore}</div>` : ''}
+
+    ${vocations.length ? `<div class="world-vocations-row">${vocations.map(v => `<span class="world-vocation-pill" title="${VOCATION_DESC[v] || ''}">${v}</span>`).join('')}</div>` : ''}
+
+    ${(w.zones && w.zones.length) ? `
+    <div class="world-zones-header">The Day of First Bonds</div>
+    <div class="world-zones-sub">Four starter zones, each with its own tradition around the ceremony</div>
+    <div class="world-zones-grid">
+      ${w.zones.map(z => `
+        <div class="zone-card">
+          <div class="zone-card-num">Zone ${z.n} &middot; ${z.quadrant}</div>
+          <div class="zone-card-towns">${z.towns}</div>
+          <div class="zone-card-meta"><b>Professor</b> ${z.professor}<br><b>Starters</b> ${z.starters}</div>
+          <div class="zone-card-desc">${z.desc}</div>
+        </div>`).join('')}
+    </div>` : ''}
+  `;
 }
 
 function switchTab(id, el) {
@@ -3530,23 +3630,6 @@ function attachBiomeHover() {
   window.addEventListener('scroll', () => { if (_currentBiome) { lastKey = null; clearBiomeHighlight(); } }, true);
   window.addEventListener('blur', () => { if (_currentBiome) { lastKey = null; clearBiomeHighlight(); } });
 }
-
-// ===== Read-only presentation layer =====
-// load() has already populated the World fields from `data`; lock them down and
-// grow each textarea to fit its full content so nothing is hidden behind a scrollbar.
-(function makeReadOnly(){
-  const autosize = ta => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; };
-  document.querySelectorAll('.world-form input, .world-form textarea').forEach(el => {
-    el.setAttribute('readonly', '');
-    if (el.tagName === 'TEXTAREA') autosize(el);
-  });
-  // The GM Secrets box is blurred until clicked; re-measure it once revealed.
-  const secret = document.querySelector('.gm-secret');
-  if (secret) {
-    const ta = secret.querySelector('textarea');
-    if (ta) secret.addEventListener('click', () => requestAnimationFrame(() => autosize(ta)), { once: true });
-  }
-})();
 
 </script>
 </body>
