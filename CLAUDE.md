@@ -62,7 +62,7 @@ forces. No in-world character is aware of this.
 |----|----------|---------|-------|
 | **Axel** | Entertainer | shiny Mudkip | Idol is Maximus (secretly his half-brother) |
 | **Nea Stone** | Researcher | shiny Charmander | Darkrai-connected tattoos from a sealed ruins chamber; guardian is Sutton Holloway |
-| **Coral** | Breeder | Popplio | |
+| **Coral Kai** | Breeder | Popplio | |
 | **Llewellyn "Lew" Morse** | Specialist | shiny Rowlet | Surname is **Morse**, not Moss. Had a twin who died in utero |
 | **Briar Gacha** | Master | Cyndaquil | From Sandbar (Town 20, Twisselmon biome). Father Aster (deceased explorer), mother Lark, sibling Robin |
 

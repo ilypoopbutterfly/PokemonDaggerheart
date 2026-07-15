@@ -24,7 +24,7 @@ var data = {
       "type": "NPC",
       "role": "Pokemon Professor \u2014 Bogen Lab",
       "location": "Bogen",
-      "pokemon": "TBD",
+      "pokemon": "Weavile",
       "personality": "Young for her title but unmistakably brilliant. Only 22 \u2014 completed the Gym Challenge and used prize money to buy the Bogen lab a few months ago. Stopped before the Elite Four because she always knew she wanted the lab. Excitable and a little clumsy. Her lab has open habitat zones instead of Pokeballs.",
       "notes": "",
       "id": 1
@@ -50,6 +50,160 @@ var data = {
       "personality": "Red-haired, charismatic, usually wins. Wears a flame bandana. Drives a white sports car with red flames. Axel watches every race from his garage TV.",
       "notes": "",
       "id": 4
+    },
+    {
+      "name": "Nurse Mabel",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "Head Nurse — Council of Three",
+      "location": "The Pokémon Center, Bogen",
+      "pokemon": "Raichu",
+      "personality": "Age 48. Brown-haired, acts like everyone's mother whether they want her to or not. Deeply caring about both people and Pokémon. Knows everyone's business — not through gossip, just because people tell her things. The practical center of Bogen.",
+      "notes": "",
+      "id": 5
+    },
+    {
+      "name": "Captain Thaddeus",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "MOSS Captain — Council of Three",
+      "location": "Bogen",
+      "pokemon": "Primeape",
+      "personality": "Age 37. Short spiky blonde hair that mirrors his Primeape's energy. Buff, practical, and direct. Leads MOSS — has been doing canopy rescue long enough that the jungle holds no surprises for him.",
+      "notes": "",
+      "id": 6
+    },
+    {
+      "name": "Yousef",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "Merchant — Council of Three",
+      "location": "Yousef's PokéMart & Vertical Garden, Bogen",
+      "pokemon": "Vileplume",
+      "personality": "Age 62. Older gentleman, kind-hearted. Runs the vertical garden farm and the local PokéMart — one of Bogen's most important practical assets for food and supplies. Old friends with Gran Gran Dorothy.",
+      "notes": "",
+      "id": 7
+    },
+    {
+      "name": "Herb",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "Assistant Nurse — Handyman",
+      "location": "The Pokémon Center, Bogen",
+      "pokemon": "Magneton",
+      "personality": "Age 52. Mabel's husband — quiet, steady, completely devoted. Does whatever Mabel says and seems genuinely happy about it. Nobody notices Herb until something breaks — then he's exactly where he needs to be.",
+      "notes": "",
+      "id": 8
+    },
+    {
+      "name": "Gran Gran Dorothy",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "Town Elder",
+      "location": "Near Axel's garage, Bogen",
+      "pokemon": "Wigglytuff",
+      "personality": "Age 79. Called Gran Gran by most everyone in town — real name Dorothy. Warm, sharp as a tack, bakes cookies. Has taken in Axel without making a big deal of it. Old friends with Yousef.",
+      "notes": "",
+      "id": 9
+    },
+    {
+      "name": "Evander Null",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "Paranormal Pokémon Specialist",
+      "location": "Bogen",
+      "pokemon": "TBD",
+      "personality": "Long-haired, low-energy, quietly competent. Difficult to read — spends more time observing than speaking. Not easily alarmed by the supernatural, and approaches it with the same unhurried patience he applies to everything else. Specializes in ghost types, unusual bonds, and unexplained hauntings. The person Llewellyn's parents sought out when the Misdreavus followed their son home from Wickport.",
+      "notes": "",
+      "id": 10
+    },
+    {
+      "name": "MOSS",
+      "town": "Bogen",
+      "type": "Faction",
+      "role": "Canopy Rescue Team",
+      "location": "Bogen (Motley Wilds)",
+      "pokemon": "",
+      "personality": "Motley Operations Search and Support — Bogen's canopy rescue specialists. A small but elite team trained for rope work, climbing, jungle extraction, and emergency response in the Motley Wilds. Led by Captain Thaddeus. Arrived at the Minior crash site alongside Professor Jayne on New Year's Eve.",
+      "notes": "",
+      "id": 11
+    },
+    {
+      "name": "Sutton Holloway",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "Nea's Uncle & Guardian",
+      "location": "Bogen",
+      "pokemon": "Raticate",
+      "personality": "Wealthy art collector. Owns the biggest house in Bogen — fancy, modern, built into the trees. Nea's mother's brother; they coexist comfortably and at a distance.",
+      "notes": "",
+      "id": 12
+    },
+    {
+      "name": "Earl",
+      "town": "Route 101",
+      "type": "NPC",
+      "role": "Route Keeper",
+      "location": "Camp Codi, Route 101",
+      "pokemon": "Bewear, Bulbasaur",
+      "personality": "Age 58. Quiet confidence, matter-of-fact bearing. Twenty years on this route — knows every loose board on the switchback stairs, every Mankey territory boundary, every Foongus bloom cycle. Doesn't waste words. Very good at his job.",
+      "notes": "",
+      "id": 13
+    },
+    {
+      "name": "Krick",
+      "town": "Route 101",
+      "type": "NPC",
+      "role": "Pokémon Trapper",
+      "location": "Route 101 (recurring)",
+      "pokemon": "Krokorok, Larvesta",
+      "personality": "Mid-20s. Australian-looking hat, easy confidence, young Crocodile Dundee energy. Carries rope traps, lure bags, and scent markers. Matter-of-fact about his work — doesn't understand why people find it controversial. In Session 2, told the party a veiled stranger from Bellossom Hollow hired him to catch a Mankey.",
+      "notes": "",
+      "id": 14
+    },
+    {
+      "name": "Petunia",
+      "town": "Route 101",
+      "type": "NPC",
+      "role": "Wandering Merchant",
+      "location": "Route 101 (wandering)",
+      "pokemon": "Nidoking, Igglybuff, Snom",
+      "personality": "40s. No fixed route, no schedule — she goes where she goes and the road tends to agree with her. Flowing layers despite the jungle heat, silver rings on most fingers. Her Nidoking hauls the cart. Trades rather than sells — always looking for something interesting in return. Has been everywhere and will tell you about it if the trade is right.",
+      "notes": "",
+      "id": 15
+    },
+    {
+      "name": "Diana Willow I",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "Retired Pokémon Champion — Jayne & Zoe's Grandmother",
+      "location": "Bogen",
+      "pokemon": "Eevee",
+      "personality": "Age 91. Retired undefeated Champion — nobody beat her, she simply decided she was done. Quiet, sharp, unhurried. Probably the most formidable person in Bogen, and you'd never know it from looking at her.",
+      "notes": "",
+      "id": 16
+    },
+    {
+      "name": "Diana Willow II",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "Salon Owner — Kirlia Kurls",
+      "location": "Kirlia Kurls, Bogen",
+      "pokemon": "Kirlia",
+      "personality": "Age 55. Named after her champion mother. Runs Kirlia Kurls, Bogen's salon — warm and community-minded. Not a battler. Supportive of both her daughters, Jayne and Zoe.",
+      "notes": "",
+      "id": 17
+    },
+    {
+      "name": "Teddy Willow",
+      "town": "Bogen",
+      "type": "NPC",
+      "role": "School Counselor",
+      "location": "Bogen",
+      "pokemon": "Whimsicott",
+      "personality": "Age 54. Gentle, thoughtful, not a battler. His role is listening, supporting, being present. Deeply loved by his family.",
+      "notes": "",
+      "id": 18
     }
   ],
   "players": [
@@ -83,7 +237,7 @@ var data = {
     },
     {
       "player": "Lacey",
-      "char": "Coral",
+      "char": "Coral Kai",
       "cls": "Breeder",
       "specialty": "Pokemon medicine and care \u2014 the Pokemon doctor of a people doctor family",
       "home": "Northwest Mimic (Zone 2)",
