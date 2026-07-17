@@ -1965,7 +1965,7 @@ Narrative aspect connecting players to the storyline, developed with the GM.</di
         </div>
         <div class="field-group"><label class="field-label">Journey order # (for sorting)</label><input type="number" id="map-order" placeholder="e.g. 1, 2, 101 for Route 101..." min="0" step="0.1"></div>
         <div class="field-group"><label class="field-label">Description / flavour</label><textarea id="map-desc" rows="3" placeholder="What does this place look, feel, smell like?"></textarea></div>
-        <div class="field-group"><label class="field-label">Connected locations</label><input type="text" id="map-connections" placeholder="e.g. Bogen, Blossom Hollow"></div>
+        <div class="field-group"><label class="field-label">Connected locations</label><input type="text" id="map-connections" placeholder="e.g. Bogen, Bellossom Hollow"></div>
         <div class="field-group"><label class="field-label">Notable Pokemon</label><input type="text" id="map-pokemon" placeholder="e.g. Sewaddle, Hoothoot, Foongus"></div>
         <div class="field-group"><label class="field-label">GM-only notes</label><textarea id="map-gmnotes" rows="2" placeholder="Secrets, hooks, hidden details..."></textarea></div>
         <div class="map-form-gym" id="gym-extra-fields">
@@ -2136,6 +2136,7 @@ function renderNpcs() {
         <span class="badge ${typeColor(n.type)}">${n.type}</span>
       </summary>
       <div class="npc-card-body">
+        ${n.image ? `<img src="${n.image}" alt="${n.name}" style="width:100%;height:auto;border-radius:8px;margin-bottom:0.75rem;display:block;" onerror="this.style.display='none'">` : ''}
         <div class="card-meta" style="margin:0 0 0.75rem;">${[n.role, n.location].filter(Boolean).join(' · ')}</div>
         ${chips(n.pokemon)}
         ${n.personality ? `<div class="card-body">${n.personality}</div>` : ''}
@@ -2763,6 +2764,7 @@ const seededMapLocations = [
     gmnotes:'',
     gymType:'', gymBadge:'', gymLeader:'', gymPuzzle:'' },
   { id:5002, order:1, type:'Town', name:'Bogen', area:'Motley Wilds', status:'Fleshed Out',
+    image:'images/loc-bogen.jpg',
     desc:'The starter town. A jungle settlement deep in the Motley Wilds at the southern base of the continent. Buildings are suspended among the trees — rope bridges, lanterns, bioluminescent spores at night. Has a ground floor accessible by off-road vehicles. Zone 4 starter town (southeast quadrant) — Professor Jayne Willow offers Grookey, Charmander, and Mudkip here on the Day of First Bonds.',
     connections:'The Motley Wilds, Route 101', pokemon:'',
     gmnotes:'',
@@ -2779,23 +2781,24 @@ const seededMapLocations = [
     gymType:'', gymBadge:'', gymLeader:'', gymPuzzle:'' },
   // ── ROUTE 101 ──
   { id:5010, order:101, type:'Route', name:'Route 101', area:'Motley Wilds', status:'Planned',
-    desc:'The first route. Connects Bogen to Blossom Hollow.',
-    connections:'Bogen, Blossom Hollow', pokemon:'',
+    desc:'The first route. Connects Bogen to Bellossom Hollow.',
+    connections:'Bogen, Bellossom Hollow', pokemon:'',
     gmnotes:'', gymType:'', gymBadge:'', gymLeader:'', gymPuzzle:'' },
   // ── BLOSSOMLANDS ──
   { id:5020, order:102, type:'Wilderness', name:'Blossomlands', area:'Blossomlands', status:'Planned',
     desc:'Farmland and grassland biome. Apple orchards, berry farms, grape trellises. The agricultural heartland of the southern region.',
     connections:'Route 101, Route 102, Route 103', pokemon:'Miltank, Mareep, Machop, Oddish, Ribombee, Applin, Swablu',
     gmnotes:'', gymType:'', gymBadge:'', gymLeader:'', gymPuzzle:'' },
-  { id:5021, order:103, type:'Town', name:'Blossom Hollow', area:'Blossomlands', status:'Planned',
+  { id:5021, order:103, type:'Town', name:'Bellossom Hollow', area:'Blossomlands', status:'Planned',
+    image:'images/loc-bellossom-hollow.jpg',
     desc:'A gorgeous little town nestled in the agricultural transition between jungle and open grassland. Smells of apple orchards, berry farms, and grape trellises. Famous for Motley Gold cider — brewed from a fruit that only grows near the Motley Wilds.',
     connections:'Route 101, Route 102', pokemon:'Miltank, Mareep, Machop, Applin',
     gmnotes:'',
     gymType:'', gymBadge:'', gymLeader:'', gymPuzzle:'' },
   // ── ROUTE 102 ──
   { id:5030, order:102.5, type:'Route', name:'Route 102', area:'Blossomlands', status:'Planned',
-    desc:'Connects Blossom Hollow to Haywick through open grassland.',
-    connections:'Blossom Hollow, Haywick', pokemon:'Flaaffy, Doduo, Munchlax, Kangaskhan, Eevee, Pikachu, Zangoose',
+    desc:'Connects Bellossom Hollow to Haywick through open grassland.',
+    connections:'Bellossom Hollow, Haywick', pokemon:'Flaaffy, Doduo, Munchlax, Kangaskhan, Eevee, Pikachu, Zangoose',
     gmnotes:'', gymType:'', gymBadge:'', gymLeader:'', gymPuzzle:'' },
   // ── HAYWICK ──
   { id:5040, order:104, type:'Gym', name:'Haywick', area:'Blossomlands', status:'Planned',
@@ -3194,11 +3197,15 @@ const seededMapLocations = [
     gymType:'Elite Four', gymBadge:'', gymLeader:'', gymPuzzle:'' },
 ];
 
-// Merge seeded map locations into data (skip if already present)
+// Merge seeded map locations into data. Seeded entries are AUTHORITATIVE:
+// drop any stale localStorage copy of a seeded id (which may lag behind edits
+// to names/images), then add the seeded version. User-added locations (ids not
+// in the seed) are preserved.
 if (!Array.isArray(data.mapLocations)) data.mapLocations = [];
 (function() {
-  const existingIds = new Set(data.mapLocations.map(l => l.id));
-  seededMapLocations.forEach(l => { if (!existingIds.has(l.id)) data.mapLocations.push(l); });
+  const seededIds = new Set(seededMapLocations.map(l => l.id));
+  data.mapLocations = data.mapLocations.filter(l => !seededIds.has(l.id));
+  seededMapLocations.forEach(l => data.mapLocations.push(l));
   renderMap();
 })();
 
@@ -3361,8 +3368,9 @@ function mapDetail(l, prefix) {
   const pokemon = l.pokemon ? `<div class="map-dr"><span class="map-dl">Pokemon</span>${l.pokemon}</div>` : '';
   const connections = l.connections ? `<div class="map-dr"><span class="map-dl">Connects to</span>${l.connections}</div>` : '';
   const desc = l.desc ? `<div style="margin-bottom:6px;line-height:1.6;">${l.desc}</div>` : '';
-  if (!desc && !pokemon && !connections && !gymInfo && !gmBlock) return '';
-  return `<div class="map-detail" id="${pid}">${desc}${pokemon}${connections}${gymInfo}${gmBlock}</div>`;
+  const image = l.image ? `<img src="${l.image}" alt="${l.name}" style="width:100%;max-height:200px;object-fit:cover;border-radius:8px;margin-bottom:8px;display:block;">` : '';
+  if (!image && !desc && !pokemon && !connections && !gymInfo && !gmBlock) return '';
+  return `<div class="map-detail" id="${pid}">${image}${desc}${pokemon}${connections}${gymInfo}${gmBlock}</div>`;
 }
 
 function toggleMapDetail(id) {
@@ -3376,7 +3384,7 @@ function toggleMapDetail(id) {
 // point in the script, so a top-level const would still be uninitialized there.)
 function regionTowns() { return [
   {n:1,  name:"Bogen",              id:5002, gym:"", zone:4,   x:73.23, y:88.66},
-  {n:2,  name:"Blossom Hollow",     id:5021, gym:"",           x:79.40, y:80.41},
+  {n:2,  name:"Bellossom Hollow",     id:5021, gym:"",           x:79.40, y:80.41},
   {n:3,  name:"Haywick",            id:5040, gym:"Normal",     x:85.62, y:70.10},
   {n:4,  name:"Clearwater Station", id:5061, gym:"",           x:67.01, y:68.04},
   {n:5,  name:"Tumbleton",          id:5081, gym:"Ground",     x:60.84, y:59.79},

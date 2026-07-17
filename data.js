@@ -24,6 +24,7 @@ var data = {
       "type": "NPC",
       "role": "Pokemon Professor \u2014 Bogen Lab",
       "location": "Bogen",
+      "image": "images/npc-jayne.jpg",
       "pokemon": "Weavile",
       "personality": "Young for her title but unmistakably brilliant. Only 22 \u2014 completed the Gym Challenge and used prize money to buy the Bogen lab a few months ago. Stopped before the Elite Four because she always knew she wanted the lab. Excitable and a little clumsy. Her lab has open habitat zones instead of Pokeballs.",
       "notes": "",
@@ -35,6 +36,7 @@ var data = {
       "type": "Rival",
       "role": "Traveling trainer \u2014 Jayne's younger sister",
       "location": "Bogen (departing)",
+      "image": "images/npc-zoe.jpg",
       "pokemon": "Grookey",
       "personality": "Has lived in her brilliant sister's shadow her whole life. Fiercely independent. The journey is hers to define. Will cross paths with the party often \u2014 sometimes helping, sometimes competing. Not a party member.",
       "notes": "",
@@ -489,6 +491,30 @@ var data = {
       "experience": "Eep! Wait, Did I Do That? \u2014 jumpy and easily spooked, with a startled half-realization underneath it when it actually holds its ground or lands a hit. Useful for masking nerves, staying composed under pressure, the quiet warning before things go bad.",
       "id": 509,
       "sprite": "images/sprite-509.png"
+    },
+    {
+      "trainer": "Briar",
+      "species": "Farfetch'd",
+      "nickname": "",
+      "gender": "",
+      "shiny": false,
+      "ball": "Great Ball",
+      "session": "Session 3",
+      "experience": "Fighter Not a Lover",
+      "id": 511,
+      "sprite": "images/sprite-511.png"
+    },
+    {
+      "trainer": "Coral",
+      "species": "Mystery Egg",
+      "nickname": "",
+      "gender": "",
+      "shiny": false,
+      "ball": "",
+      "session": "Session 3",
+      "experience": "",
+      "id": 512,
+      "sprite": ""
     }
   ]
 };
