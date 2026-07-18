@@ -3473,10 +3473,15 @@ function flashHighlight(el) {
   el.classList.add('flash-highlight');
   setTimeout(() => el.classList.remove('flash-highlight'), 1800);
 }
+// A card's true species name (handles apostrophes/symbols like Farfetch'd, Nidoran♀
+// that the sanitized data-name drops).
+function cardName(c) {
+  return (((c.querySelector('.pdex-name') || {}).textContent) || c.dataset.name || '').trim().toLowerCase();
+}
 function dexNameSet() {
   if (!window.__dexNames) {
     window.__dexNames = new Set(
-      [...document.querySelectorAll('.pdex-card')].map(c => (c.dataset.name || '').toLowerCase())
+      [...document.querySelectorAll('.pdex-card')].map(c => cardName(c))
     );
   }
   return window.__dexNames;
@@ -3503,7 +3508,7 @@ function gotoDexMon(name) {
   if (allBtn) allBtn.classList.add('active');
   filterDex();
   const card = [...document.querySelectorAll('.pdex-card')]
-    .find(c => (c.dataset.name || '').toLowerCase() === key);
+    .find(c => cardName(c) === key);
   if (card) { card.scrollIntoView({ block: 'center' }); flashHighlight(card); }
 }
 // Pokédex -> Region Map: open the map, expand the location's panel, scroll to it.
@@ -3528,7 +3533,7 @@ function injectDexLocations() {
     });
   });
   document.querySelectorAll('.pdex-card').forEach(card => {
-    const key = (card.dataset.name || '').toLowerCase();
+    const key = cardName(card);
     const locs = idx[key];
     if (!locs || !locs.length) return;
     const info = card.querySelector('.pdex-info');

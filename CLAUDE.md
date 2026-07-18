@@ -104,8 +104,16 @@ symbol). Pokémon Center nurses unknowingly file intake reports that feed back t
 - **Session 0:** 12/31–1/2 · **Session 1:** 1/3–1/4 · **Session 2:** "Route 101, Pt. 2," 1/4–1/5
 
 ### Pokédex & Veil Dex facts
-- **284 Pokémon**, numbered contiguously **0001–0284** by regional Dex number. Regional variants
-  removed from the main dex (Sirfetch'd also removed, Farfetch'd kept); base/normal forms are authoritative.
+- **305 Pokémon** (grew from the original 284). Numbered contiguously **0001–0305**, but **ordered by
+  journey location, not National Dex number**: the 36 starter-family members stay first (0001–0036),
+  then everyone else follows the route order (Route 101 → Route 102 → … → Mt. Lycan). Renumber via the
+  reorder step when locations change. Regional variants stay out of the main dex; base/normal forms are
+  authoritative (Farfetch'd kept, Sirfetch'd removed).
+- The dex is cross-linked with the Region Map: each card shows a clickable "Found in" line, and each
+  location panel's Pokémon link back to their dex card. Both derive from the per-location `pokemon`
+  lists in `seededMapLocations` (the single source for where-found).
+- The 21 species added past the original 284 are common Water/coastal lines plus Zangoose, Seviper, and
+  Pincurchin, placed to fill the region's water locations and routes.
 - **Veil Dex:** 34 regional variants grouped by strain — Alolan (12), Galarian (9, incl. Galarian
   Farfetch'd), Hisuian (12), Paldean (1, Annihilape = Fighting/Ghost, base Primeape #0048).
 
