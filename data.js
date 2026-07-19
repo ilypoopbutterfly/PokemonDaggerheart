@@ -48,6 +48,7 @@ var data = {
       "type": "NPC",
       "role": "Famous racing champion \u2014 Axel's idol",
       "location": "Unknown \u2014 racing circuit",
+      "image": "images/npc-maximus.jpg",
       "pokemon": "Unknown",
       "personality": "Red-haired, charismatic, usually wins. Wears a flame bandana. Drives a white sports car with red flames. Axel watches every race from his garage TV.",
       "notes": "",
@@ -206,6 +207,42 @@ var data = {
       "personality": "Age 54. Gentle, thoughtful, not a battler. His role is listening, supporting, being present. Deeply loved by his family.",
       "notes": "",
       "id": 18
+    },
+    {
+      "name": "Yena",
+      "town": "Sandbar",
+      "type": "Ally",
+      "role": "Briar's childhood friend",
+      "location": "Sandbar",
+      "image": "images/npc-yena.jpg",
+      "pokemon": "Bulbasaur",
+      "personality": "One of Briar's two childhood friends from Sandbar. She, Artemis, and Briar planned to set out on their journeys together — but on the very first day a panicked Ralts teleported Briar far from home, separating the three before they'd even begun. Gentle and flower-loving, rarely seen without a wildflower crown (and a matching one for her Bulbasaur).",
+      "notes": "",
+      "id": 19
+    },
+    {
+      "name": "Artemis",
+      "town": "Sandbar",
+      "type": "Ally",
+      "role": "Briar's childhood friend",
+      "location": "Sandbar",
+      "image": "images/npc-artemis.jpg",
+      "pokemon": "Froakie",
+      "personality": "One of Briar's two childhood friends from Sandbar. The trio planned to start their journeys together before a panicked Ralts teleported Briar away on day one. A born waterbug — happiest riding the waves off Sandbar with their Froakie.",
+      "notes": "",
+      "id": 20
+    },
+    {
+      "name": "Van (Grandpa Vanilla)",
+      "town": "Haywick",
+      "type": "NPC",
+      "role": "Haywick Gym Leader — Plain Badge (Normal)",
+      "location": "Haywick",
+      "image": "images/npc-van.jpg",
+      "pokemon": "Snorlax",
+      "personality": "An older gentleman in his 60s — denim button-up, white trousers, shoulder-length white hair, and a natural handlebar mustache. Believes Normal-type Pokémon are badly underrated, and endears himself to every challenger who comes through. Runs a farm on the river at Haywick, with a well-loved Snorlax.",
+      "notes": "",
+      "id": 21
     }
   ],
   "players": [
