@@ -4,33 +4,67 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GM Wiki — Pokémon × Daggerheart</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+  @font-face { font-family:'Poppins'; font-weight:400; font-style:normal; font-display:swap; src:url(fonts/poppins-400.woff2) format('woff2'); }
+  @font-face { font-family:'Poppins'; font-weight:600; font-style:normal; font-display:swap; src:url(fonts/poppins-600.woff2) format('woff2'); }
+  @font-face { font-family:'Poppins'; font-weight:700; font-style:normal; font-display:swap; src:url(fonts/poppins-700.woff2) format('woff2'); }
+  @font-face { font-family:'Poppins'; font-weight:800; font-style:normal; font-display:swap; src:url(fonts/poppins-800.woff2) format('woff2'); }
+
   :root {
-    --bg: #ffffff;
-    --bg2: #f7f0f0;
-    --bg3: #f0e8e8;
-    --bg4: #e8dede;
-    --surface: #e0d0d0;
-    --surface2: #d8c8c8;
-    --border: rgba(180,0,0,0.12);
-    --border2: rgba(180,0,0,0.25);
-    --accent: #CC0000;
-    --accent2: #990000;
-    --accent3: #BB0000;
-    --gold: #8B4513;
-    --gold2: #A0522D;
-    --coral: #CC3300;
-    --purple: #555555;
-    --teal: #333333;
-    --text: #1a1a1a;
-    --text2: #444444;
-    --text3: #888888;
+    /* Pokémon character-sheet palette */
+    --blue:#2A75BB; --blue-dk:#1F5A94; --yellow:#FFCB05; --yellow-dk:#C79000; --red:#CC0000; --ink:#1a1a2e;
+    --bg: #eef2f8;
+    --bg2: #ffffff;
+    --bg3: #ffffff;
+    --bg4: #F4F8FC;
+    --surface: #e7eef7;
+    --surface2: #dfe8f3;
+    --border: #d8e2ee;
+    --border2: #cbd8e6;
+    --accent: #2A75BB;
+    --accent2: #1F5A94;
+    --accent3: #2A75BB;
+    --gold: #C79000;
+    --gold2: #FFCB05;
+    --coral: #CC0000;
+    --purple: #6c5cd6;
+    --teal: #1f9e97;
+    --text: #1a1a2e;
+    --text2: #566577;
+    --text3: #8a9cad;
     --danger: #CC0000;
-    --font-display: 'Cinzel', serif;
-    --font-body: 'Crimson Pro', serif;
-    --font-mono: 'Space Mono', monospace;
+    --pill-bg: #1a1a2e; --pill-fg: #ffffff; --shadow: rgba(26,26,46,.10);
+    --font-display: 'Poppins', system-ui, Arial, sans-serif;
+    --font-body: 'Poppins', system-ui, Arial, sans-serif;
+    --font-mono: 'Poppins', system-ui, Arial, sans-serif;
   }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme]){
+    --bg:#0f1018; --bg2:#171a27; --bg3:#1b1d2b; --bg4:#171a27;
+    --surface:#202334; --surface2:#262a3d; --border:#2a2f42; --border2:#39405a;
+    --text:#eef1f6; --text2:#aab4c4; --text3:#7f8ba0;
+    --pill-bg:#0a0b12; --shadow:rgba(0,0,0,.5);
+    --accent:#4b93d6; --accent2:#7fb6e8; --accent3:#4b93d6;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0f1018; --bg2:#171a27; --bg3:#1b1d2b; --bg4:#171a27;
+    --surface:#202334; --surface2:#262a3d; --border:#2a2f42; --border2:#39405a;
+    --text:#eef1f6; --text2:#aab4c4; --text3:#7f8ba0;
+    --pill-bg:#0a0b12; --shadow:rgba(0,0,0,.5);
+    --accent:#4b93d6; --accent2:#7fb6e8; --accent3:#4b93d6;
+  }
+  :root[data-theme="light"]{
+    --bg:#eef2f8; --bg2:#ffffff; --bg3:#ffffff; --bg4:#F4F8FC;
+    --surface:#e7eef7; --surface2:#dfe8f3; --border:#d8e2ee; --border2:#cbd8e6;
+    --text:#1a1a2e; --text2:#566577; --text3:#8a9cad;
+    --pill-bg:#1a1a2e; --shadow:rgba(26,26,46,.10);
+    --accent:#2A75BB; --accent2:#1F5A94; --accent3:#2A75BB;
+  }
+
+  .theme-toggle { position:fixed; top:12px; right:14px; z-index:200; display:inline-flex; align-items:center; gap:6px;
+    background:var(--blue); color:#fff; border:none; font-family:var(--font-body); font-size:12.5px; font-weight:700;
+    letter-spacing:.02em; padding:8px 14px; border-radius:20px; cursor:pointer; box-shadow:0 2px 0 var(--blue-dk), 0 3px 8px var(--shadow); }
+  .theme-toggle:hover { background:var(--blue-dk); }
+  .theme-toggle:focus-visible { outline:2px solid var(--yellow); outline-offset:2px; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -104,10 +138,11 @@
 
   .sidebar-title {
     font-family: var(--font-display);
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 800;
     color: var(--accent2);
-    line-height: 1.3;
-    letter-spacing: 0.05em;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
   }
 
   .sidebar-sub {
@@ -144,11 +179,12 @@
     font-family: var(--font-body);
   }
 
-  .nav-item:hover { background: var(--bg3); color: var(--text); }
+  .nav-item:hover { background: var(--surface); color: var(--text); }
   .nav-item.active {
-    background: var(--bg3);
+    background: var(--surface);
     color: var(--accent2);
-    border-left-color: var(--accent);
+    border-left: 3px solid var(--accent);
+    font-weight: 700;
   }
 
   .nav-icon {
@@ -187,10 +223,12 @@
 
   .page-title {
     font-family: var(--font-display);
-    font-size: 26px;
+    font-size: 28px;
+    font-weight: 800;
     color: var(--accent2);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.005em;
     margin-bottom: 4px;
+    text-wrap: balance;
   }
 
   .page-sub {
@@ -202,14 +240,15 @@
   /* Cards */
   .card {
     background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
     padding: 1.25rem 1.5rem;
     margin-bottom: 1rem;
-    transition: border-color 0.2s;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
   }
 
-  .card:hover { border-color: var(--border2); }
+  .card:hover { border-color: var(--border2); transform: translateY(-1px); box-shadow: 0 5px 16px var(--shadow); }
 
   .card-header {
     display: flex;
@@ -221,9 +260,10 @@
 
   .card-title {
     font-family: var(--font-display);
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 700;
     color: var(--accent2);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.01em;
   }
 
   .card-meta {
@@ -3754,7 +3794,7 @@ function highlightBiome(name) {
   ctx.globalCompositeOperation = 'source-over';
   // Name label near the region's center.
   const fs = 60;
-  ctx.font = '600 ' + fs + 'px "Crimson Pro", serif';
+  ctx.font = '700 ' + fs + 'px "Poppins", system-ui, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   // Clamp by the label's real width so edge regions never get cut off.
@@ -3855,6 +3895,24 @@ function attachBiomeHover() {
   window.addEventListener('blur', () => { if (_currentBiome) { lastKey = null; clearBiomeHighlight(); } });
 }
 
+</script>
+<script>
+/* Light/dark theme toggle — top-right button */
+(function () {
+  var root = document.documentElement;
+  var btn = document.createElement('button');
+  btn.className = 'theme-toggle';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Toggle light or dark theme');
+  function cur() {
+    var t = root.getAttribute('data-theme');
+    return t || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  }
+  function set(t) { root.setAttribute('data-theme', t); btn.textContent = (t === 'dark' ? '☀ Light' : '☾ Dark'); }
+  set(cur());
+  btn.addEventListener('click', function () { set(cur() === 'dark' ? 'light' : 'dark'); });
+  document.body.appendChild(btn);
+})();
 </script>
 </body>
 </html>
