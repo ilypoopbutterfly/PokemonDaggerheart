@@ -216,16 +216,18 @@
   .section.active { display: block; }
 
   .page-header {
+    background: linear-gradient(135deg, var(--blue), var(--blue-dk));
+    border-radius: 12px;
+    box-shadow: 0 3px 0 var(--ink), 0 6px 18px var(--shadow);
+    padding: 22px 26px;
     margin-bottom: 2rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--border);
   }
 
   .page-title {
     font-family: var(--font-display);
     font-size: 28px;
     font-weight: 800;
-    color: var(--accent2);
+    color: #ffffff;
     letter-spacing: 0.005em;
     margin-bottom: 4px;
     text-wrap: balance;
@@ -233,8 +235,9 @@
 
   .page-sub {
     font-size: 14px;
-    color: var(--text3);
-    font-style: italic;
+    color: var(--yellow);
+    font-weight: 700;
+    letter-spacing: 0.02em;
   }
 
   /* Cards */
@@ -940,7 +943,9 @@
         .pdex-search { width:100%;padding:8px 12px;margin-bottom:1rem;border:1px solid var(--border2);border-radius:6px;background:var(--bg3);color:var(--text);font-size:14px;font-family:var(--font-body);outline:none; }
         .pdex-search:focus { border-color:var(--accent); }
         .pdex-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;width:100%;box-sizing:border-box; }
-        .pdex-card { border-radius:8px;padding:10px;display:flex;align-items:flex-start;gap:8px;transition:transform 0.15s;box-sizing:border-box;min-width:0;overflow:hidden; }
+        .pdex-card { border-radius:10px;padding:16px 10px 10px;display:flex;align-items:flex-start;gap:8px;transition:transform 0.15s, box-shadow 0.15s;box-sizing:border-box;min-width:0;overflow:hidden;position:relative;box-shadow:0 2px 8px var(--shadow); }
+        .pdex-card:hover { box-shadow:0 5px 16px var(--shadow); }
+        .pdex-strip { position:absolute;top:0;left:0;right:0;height:6px; }
         .pdex-card:hover { transform:translateY(-2px); }
         .pdex-sprite { width:64px;height:64px;image-rendering:pixelated;flex-shrink:0; }
         .pdex-info { flex:1;min-width:0;overflow:hidden;word-wrap:break-word;overflow-wrap:break-word; }
@@ -3912,6 +3917,19 @@ function attachBiomeHover() {
   set(cur());
   btn.addEventListener('click', function () { set(cur() === 'dark' ? 'light' : 'dark'); });
   document.body.appendChild(btn);
+})();
+
+/* Colored type-strip across the top of every Pokédex card */
+(function () {
+  var TH = {normal:'#888878',fire:'#C04000',water:'#0050A0',grass:'#206020',electric:'#A08000',ice:'#006080',fighting:'#902020',poison:'#602080',ground:'#705020',flying:'#304080',psychic:'#901060',bug:'#406010',rock:'#605030',ghost:'#403060',dragon:'#202090',dark:'#302040',steel:'#405060',fairy:'#902060'};
+  document.querySelectorAll('.pdex-card').forEach(function (c) {
+    if (c.querySelector('.pdex-strip')) return;
+    var pt = (c.dataset.types || '').split(',')[0];
+    var s = document.createElement('div');
+    s.className = 'pdex-strip';
+    s.style.background = TH[pt] || '#888878';
+    c.insertBefore(s, c.firstChild);
+  });
 })();
 </script>
 </body>
