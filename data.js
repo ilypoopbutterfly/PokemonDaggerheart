@@ -7,7 +7,7 @@ var data = {
     "regionBlurb": "A large continent surrounded by ocean with scattered islands. The region sits inside what appears to be a vast, seamless world.",
     "tone": "Coming of age, self-discovery, bonds between trainer and Pokemon, wonder, mystery beneath the surface.",
     "conflict": "Eight Gyms stand between the trainers and whatever future they are building toward. The journey north and counter-clockwise across the continent will test who they are and who they want to become.",
-    "lore": "Coming of Age Tradition: In Mimic, every young person undergoes a cherished rite \u2014 receiving their first Pokemon and setting out to conquer the region's 8 Gyms. The journey is less about raw victory and more about self-discovery. The age of departure differs by geography: northern half sets out at 16, southern half at 18 due to harsher terrain.",
+    "lore": "Coming of Age Tradition: In Mimic, every young person undergoes a cherished rite \u2014 receiving their first Pokemon and setting out to conquer the region's 8 Gyms. The journey is less about raw victory and more about self-discovery. The age of departure differs by geography: northern half sets out at 16, southern half at 18 due to harsher terrain.<br><br><strong>Governance:</strong> Mimic has no king, no capital, and no central government — it is a confederation of self-governing towns. Each town governs however suits it: Bogen has no mayor but a Council of Three, chosen by trust and role; elsewhere elders, farm granges, or elected stewards. In Gym towns the Gym Leader often carries the soft authority.<br><br>Above the towns, the region divides into four zones by quadrant, each led by a <strong>Cardinal</strong> — of the Northeast, Northwest, Southwest, and Southeast. A Cardinal need not live in their zone's starter town, only somewhere within the zone. The fifth seat belongs to the <strong>Champion</strong>, who holds Zunge Isle and Ruff Island — the islands answer to no quadrant.<br><br><strong>The annual gathering:</strong> once a year the five convene in Volt City, the largest city in Mimic. Nothing binds until all five seats are filled — and the Champion is the last to sit. There is no king in Mimic. There is a Champion.<br><br><strong>The League:</strong> the region's battle ladder climbs from the eight Gyms to the <strong>Elite Four</strong> and finally the Champion. The Elite Four are housed on <strong>Zunge Isle</strong>, faced in order &mdash; a <strong>Steel</strong>-type master, then <strong>Ghost</strong>, then <strong>Dragon</strong>, then <strong>Fairy</strong>.",
     "vocations": "Master \u00b7 Researcher \u00b7 Breeder \u00b7 Specialist \u00b7 Entertainer \u00b7 Rebel",
     "zones": [
       { "n": 1, "quadrant": "Northeast", "towns": "Midori, Boosong", "professor": "Thaniel Sheng", "starters": "Rowlet, Torchic, Piplup", "desc": "A bamboo wetlands town on the northern bank of The Mizu. Lanterns set on the river at dawn \u2014 the ceremony is calm, communal, and riverine." },
@@ -243,6 +243,17 @@ var data = {
       "personality": "An older gentleman in his 60s — denim button-up, white trousers, shoulder-length white hair, and a natural handlebar mustache. Believes Normal-type Pokémon are badly underrated, and endears himself to every challenger who comes through. Runs a farm on the river at Haywick, with a well-loved Snorlax.",
       "notes": "",
       "id": 21
+    },
+    {
+      "name": "Jessibelle",
+      "town": "Bellossom Hollow",
+      "type": "NPC",
+      "role": "Pokémon Center Nurse — Bellossom Hollow",
+      "location": "The Pokémon Center, Bellossom Hollow",
+      "pokemon": "",
+      "personality": "The Bellossom Hollow Center's new nurse, recently arrived to replace the long-standing previous one. Pale blue hair — bangs and two spiral pigtails — tucked under black scrubs and a mask, with silver eyes and a permanently out-of-it air. Nice enough, trained to hand out basic Pokémon meds and run the counter. Kind, competent, easy to trust.",
+      "notes": "",
+      "id": 22
     }
   ],
   "players": [

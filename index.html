@@ -875,6 +875,32 @@
     .add-bar:empty { display: none; }
 
   </style>
+<style>
+  .bogen-townmap { margin: 6px 0 2px; }
+  .bogen-townmap .btm-sub { font-size:11.5px; color:var(--text2); font-style:italic; margin-bottom:10px; line-height:1.5; }
+  .btm-wrap { display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap; }
+  .btm-imgwrap { position:relative; flex:1 1 58%; min-width:280px; line-height:0; border:1px solid var(--border2); border-radius:10px; overflow:hidden; box-shadow:0 2px 10px var(--shadow); }
+  .btm-imgwrap img { width:100%; height:auto; display:block; image-rendering:pixelated; }
+  .btm-pin { position:absolute; transform:translate(-50%,-50%); min-width:20px; height:20px; padding:0 4px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:800; font-size:10px; line-height:1; color:#fff; border:2px solid #fff; box-shadow:0 1px 3px rgba(0,0,0,.65); cursor:pointer; transition:transform .12s ease, box-shadow .12s ease; z-index:2; }
+  .btm-pin.b{background:#2A75BB;} .btm-pin.u{background:#2f9e44;} .btm-pin.s{background:#8a3ffc;} .btm-pin.z{background:rgba(122,84,20,.92);} .btm-pin.r{background:#37474f;}
+  .btm-pin:hover, .btm-pin.hot { transform:translate(-50%,-50%) scale(1.4); box-shadow:0 3px 10px rgba(0,0,0,.85); z-index:6; }
+  .btm-legend { flex:1 1 30%; min-width:200px; display:flex; flex-direction:column; gap:2px; }
+  .btm-leg-group { font-family:var(--font-display); font-weight:700; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent2); margin:8px 0 3px; }
+  .btm-leg-group:first-child{margin-top:0;}
+  .btm-leg { display:flex; align-items:center; gap:9px; padding:3px 7px; border-radius:6px; cursor:pointer; font-size:12.5px; color:var(--text); transition:background .12s; }
+  .btm-leg:hover, .btm-leg.hot { background:var(--surface); }
+  .btm-leg .bdg { flex-shrink:0; min-width:19px; height:19px; padding:0 4px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:800; font-size:9px; color:#fff; border:1.5px solid #fff; box-shadow:0 1px 2px rgba(0,0,0,.4); }
+  .btm-leg .bdg.b{background:#2A75BB;} .btm-leg .bdg.u{background:#2f9e44;} .btm-leg .bdg.s{background:#8a3ffc;} .btm-leg .bdg.z{background:#7a5414;} .btm-leg .bdg.r{background:#37474f;}
+</style>
+<style>
+  .townmap-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+  .townmap-tab { font-family:var(--font-display); font-weight:700; font-size:13px; padding:7px 16px; border-radius:8px; border:1.5px solid var(--border2); background:var(--bg2); color:var(--text2); cursor:pointer; transition:all .12s; }
+  .townmap-tab:hover { border-color:var(--accent); color:var(--text); }
+  .townmap-tab.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .townmap-heading { font-family:var(--font-display); font-weight:800; font-size:18px; color:var(--accent2); margin-bottom:12px; letter-spacing:.01em; }
+  #townmap-view .btm-imgwrap { flex: 1 1 64%; }
+  #townmap-view .btm-legend { flex: 1 1 28%; }
+</style>
 </head>
 <body>
 
@@ -899,6 +925,10 @@
       <div class="nav-item" onclick="switchTab('map', this)">
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
         Region Map
+      </div>
+      <div class="nav-item" onclick="switchTab('townmaps', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="9" width="6" height="11" rx="1"/><rect x="14" y="4" width="6" height="16" rx="1"/><path d="M3 20h18"/></svg>
+        Town Maps
       </div>
       <div class="nav-item" onclick="switchTab('pokedex', this)">
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/><circle cx="12" cy="12" r="3"/></svg>
@@ -2062,12 +2092,68 @@ Narrative aspect connecting players to the storyline, developed with the GM.</di
 
       <div id="map-list"></div>
     </div>
+    <div id="sec-townmaps" class="section">
+      <div class="page-header">
+        <div class="page-title">Town Maps</div>
+        <div class="page-sub">Detailed maps of Mimic's towns &mdash; pick a town to explore its buildings</div>
+      </div>
+      <div class="townmap-tabs" id="townmap-tabs"></div>
+      <div id="townmap-view"></div>
+    </div>
   </main>
 </div>
 
 
 <script src="data.js" charset="utf-8"></script>
 <script>
+// ===== Town maps: interactive pin map rendered inside a location's detail =====
+const TOWNMAPS = {
+  5002: { name:'Bogen', img:'images/loc-bogen-townmap.png', markers:[
+    {n:"1",name:"House",x:31.3,y:17.2,k:"b"},{n:"2",name:"House",x:73.2,y:17.2,k:"b"},
+    {n:"3",name:"Hotel",x:52.3,y:18.8,k:"b"},{n:"4",name:"Evander's House",x:22.1,y:20.4,k:"b"},
+    {n:"5",name:"Willow Family Home + Kirlia Kurls",x:82.4,y:20.4,k:"b"},{n:"6",name:"Sutton's House",x:8.1,y:36.0,k:"b"},
+    {n:"7",name:"Jayne's Lab",x:89.4,y:37.5,k:"b"},{n:"8",name:"The Shop Towers / Marketplace",x:36.0,y:39.2,k:"b"},
+    {n:"9",name:"PokeMart",x:68.6,y:39.2,k:"b"},{n:"10",name:"Pokemon Center",x:51.1,y:47.0,k:"b"},
+    {n:"11",name:"Gran Gran's House",x:73.2,y:57.9,k:"b"},{n:"12",name:"House",x:82.4,y:57.9,k:"b"},
+    {n:"13",name:"School",x:24.4,y:61.1,k:"b"},{n:"14",name:"Yousef's House",x:38.3,y:61.1,k:"b"},
+    {n:"15",name:"MOSS HQ",x:49.9,y:78.3,k:"b"},{n:"16",name:"Townhouses",x:29.1,y:79.8,k:"b"},
+    {n:"17",name:"House",x:68.6,y:79.8,k:"b"},{n:"18",name:"House",x:73.2,y:79.8,k:"b"},
+    {n:"19",name:"House",x:77.8,y:79.8,k:"b"},
+    {n:"U1",name:"Sutton's Guest House (Nea's home)",x:7.0,y:50.1,k:"u"},
+    {n:"U2",name:"Yousef's Vertical Garden / Nursery",x:40.7,y:61.1,k:"u"},
+    {n:"U3",name:"Axel's Garage",x:68.6,y:67.3,k:"u"},
+    {n:"R",name:"The Ruins",x:8.0,y:77.6,k:"s"},{n:"T",name:"The Titan Gate",x:50.0,y:94.5,k:"s"},{n:"Rt 101 ↑",name:"North path to Route 101",x:16.0,y:3.5,k:"r"}
+  ]},
+  5021: { name:'Bellossom Hollow', img:'images/loc-bellossom-townmap.png', markers:[
+    {n:"1",name:"Pokémon Center",x:67.8,y:40.6,k:"b"},
+    {n:"2",name:"PokéMart",x:67.8,y:53.1,k:"b"},
+    {n:"3",name:"School",x:47.8,y:54.2,k:"b"},
+    {n:"4",name:"Bed & Breakfast",x:61.1,y:39.1,k:"b"},
+    {n:"5",name:"Motley Gold Farmhouse",x:11.1,y:39.1,k:"b"},
+    {n:"W",name:"The Well",x:21.1,y:45.3,k:"u"},
+    {n:"P",name:"The Park — town events green",x:46.9,y:22.1,k:"s"},
+    {n:"Rt 102 ↑",name:"North road to Route 102",x:81.0,y:4.0,k:"r"},
+    {n:"Rt 101 ↓",name:"South road to Route 101",x:72.0,y:95.5,k:"r"}
+  ]}
+};
+function townMapHtml(tm){
+  var pins = tm.markers.map(function(m){ return '<div class="btm-pin '+m.k+'" data-k="'+m.n+'" style="left:'+m.x+'%;top:'+m.y+'%" title="'+m.name+'">'+m.n+'</div>'; }).join('');
+  var groups=[["b","Buildings"],["z","Districts"],["u","Unique Locations"],["s","Landmarks"],["r","Routes"]];
+  var legend = groups.map(function(g){
+    var items = tm.markers.filter(function(m){return m.k===g[0];});
+    if(!items.length) return '';
+    return '<div class="btm-leg-group">'+g[1]+'</div>'+items.map(function(m){
+      return '<div class="btm-leg" data-k="'+m.n+'"><span class="bdg '+m.k+'">'+m.n+'</span><span>'+m.name+'</span></div>';
+    }).join('');
+  }).join('');
+  return '<div class="bogen-townmap" onclick="event.stopPropagation()"><div class="btm-sub">Hover a pin or legend entry to link them. Yellow = raised walkways &middot; dotted = stairs &middot; grey = jungle floor &middot; north exit &rarr; Route 101.</div><div class="btm-wrap"><div class="btm-imgwrap"><img src="'+tm.img+'" alt="town map">'+pins+'</div><div class="btm-legend">'+legend+'</div></div></div>';
+}
+if(!window.__btmHover){ window.__btmHover=1;
+  document.addEventListener('mouseover', function(e){ var t=e.target.closest&&e.target.closest('.btm-pin,.btm-leg'); if(!t)return; var k=t.getAttribute('data-k'); var sc=t.closest('.bogen-townmap'); if(!sc)return; sc.querySelectorAll('[data-k]').forEach(function(el){ if(el.getAttribute('data-k')===k) el.classList.add('hot'); }); });
+  document.addEventListener('mouseout', function(e){ var t=e.target.closest&&e.target.closest('.btm-pin,.btm-leg'); if(!t)return; var sc=t.closest('.bogen-townmap'); if(!sc)return; sc.querySelectorAll('.hot').forEach(function(el){ el.classList.remove('hot'); }); });
+}
+
+
 const KEY = 'gm_wiki_v37';
 
 function load() {
@@ -2106,7 +2192,7 @@ function load() {
     }
   } catch(e) {}
   renderWorld();
-  renderNpcs(); renderPlayers(); renderCaught(); renderArcs(); renderSessions(); renderEnc(); renderMechs(); renderMap(); renderRegionMap();
+  renderNpcs(); renderPlayers(); renderCaught(); renderArcs(); renderSessions(); renderEnc(); renderMechs(); renderMap(); renderRegionMap(); renderTownMaps();
   if(data.domainCards){ Object.keys(data.domainCards).forEach(t=>{ if(domainData[t]) domainData[t]=data.domainCards[t]; }); }
 }
 
@@ -3481,6 +3567,21 @@ function renderMap() {
   el.innerHTML = html;
 }
 
+// ===== Town Maps page =====
+function townMapEntries(){ return Object.keys(TOWNMAPS).map(function(id){ var e=TOWNMAPS[id]; return {id:+id, name:e.name||('#'+id)}; }); }
+function renderTownMaps(activeId){
+  var tabsEl=document.getElementById('townmap-tabs'), viewEl=document.getElementById('townmap-view');
+  if(!tabsEl||!viewEl) return;
+  var entries=townMapEntries();
+  if(!entries.length){ tabsEl.innerHTML=''; viewEl.innerHTML='<div class="empty-state">No town maps yet.</div>'; return; }
+  if(!activeId||!TOWNMAPS[activeId]) activeId=entries[0].id;
+  tabsEl.innerHTML=entries.map(function(e){ return '<button class="townmap-tab'+(e.id===activeId?' active':'')+'" onclick="renderTownMaps('+e.id+')">'+e.name+'</button>'; }).join('');
+  var tm=TOWNMAPS[activeId];
+  viewEl.innerHTML='<div class="townmap-heading">'+(tm.name||'Town')+' &mdash; Town Map</div>'+townMapHtml(tm);
+}
+function openTownMap(id){ switchTab('townmaps', navItemFor('townmaps')); renderTownMaps(id); window.scrollTo(0,0); }
+function regionTownClick(id){ if(typeof TOWNMAPS!=='undefined' && TOWNMAPS[id]) openTownMap(id); else jumpToTown(id); }
+
 function mapDetail(l, prefix) {
   const pid = (prefix || 'd') + l.id;
   const gymInfo = l.type === 'Gym' && (l.gymType||l.gymBadge||l.gymLeader||l.gymPuzzle) ? `
@@ -3648,9 +3749,9 @@ function renderRegionMap() {
     m.style.top = t.y + '%';
     m.textContent = t.n;
     m.title = t.name + (t.gym ? ' — ' + gymLabel(t.gym) : '') + (t.zone ? ' — Starter Zone ' + t.zone : '');
-    m.addEventListener('click', () => jumpToTown(t.id));
+    m.addEventListener('click', () => regionTownClick(t.id));
     wrap.appendChild(m);
-    lhtml += `<div class="region-legend-item" onclick="jumpToTown(${t.id})">
+    lhtml += `<div class="region-legend-item" onclick="regionTownClick(${t.id})">
       <span class="region-legend-num">${t.n}.</span>
       <span>${t.name}</span>
       ${t.gym ? `<span class="region-legend-gym">${gymLabel(t.gym)}</span>` : ''}
