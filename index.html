@@ -1572,7 +1572,30 @@
     <tr><td style="padding:6px 10px;">Legendary</td><td style="text-align:center;padding:6px 10px;">0–14</td><td style="text-align:center;padding:6px 10px;">15–24</td><td style="text-align:center;padding:6px 10px;">25–35</td><td style="padding:6px 10px;">1 / 2 / 3</td></tr>
   </tbody>
 </table>
-<br>Knocked Out: damage that exceeds the Severe threshold for that Pokémon's Stage AND is at least 2× that Pokémon's max Stress.</div>
+<br>Knocked Out: a single hit dealing at least <strong>twice the Severe threshold</strong> for that Pokémon's Stage takes it out outright (Stage 0: 30+ &middot; Stage 1: 40+ &middot; Stage 2: 56+ &middot; Legendary: 70+). Otherwise a Pokémon faints when it marks its last Stress.</div>
+      </div>
+
+      <div class="mech-rule-card">
+        <div class="mech-rule-header">
+          <div class="mech-rule-title">Pok&eacute;Mart Prices</div>
+          <span class="badge badge-gold">Economy</span>
+        </div>
+        <div class="mech-rule-body">Standard shelf prices at any Pok&eacute;Mart, in Pok&eacute;dollars. <strong>Specialty Balls</strong> (Heavy, Love, Net, Dusk, Friend, Luxury, Repeat, Nest, Dream, Premier&hellip;) and <strong>evolution materials</strong> are not sold at marts &mdash; those come from private traders like Petunia.<br><br>
+<table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:12px;">
+  <thead><tr style="border-bottom:1px solid var(--border2);color:var(--accent);">
+    <th style="text-align:left;padding:6px 10px;">Item</th><th style="text-align:right;padding:6px 10px;">Cost</th>
+    <th style="text-align:left;padding:6px 10px;">Item</th><th style="text-align:right;padding:6px 10px;">Cost</th>
+  </tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--border2);"><td style="padding:5px 10px;">Pok&eacute; Ball</td><td style="text-align:right;padding:5px 10px;">25</td><td style="padding:5px 10px;">Potion</td><td style="text-align:right;padding:5px 10px;">25</td></tr>
+    <tr style="border-bottom:1px solid var(--border2);"><td style="padding:5px 10px;">Great Ball</td><td style="text-align:right;padding:5px 10px;">50</td><td style="padding:5px 10px;">Super Potion</td><td style="text-align:right;padding:5px 10px;">50</td></tr>
+    <tr style="border-bottom:1px solid var(--border2);"><td style="padding:5px 10px;">Ultra Ball</td><td style="text-align:right;padding:5px 10px;">75</td><td style="padding:5px 10px;">Hyper Potion</td><td style="text-align:right;padding:5px 10px;">75</td></tr>
+    <tr style="border-bottom:1px solid var(--border2);"><td style="padding:5px 10px;">Status heal *</td><td style="text-align:right;padding:5px 10px;">15</td><td style="padding:5px 10px;">Max Potion</td><td style="text-align:right;padding:5px 10px;">200</td></tr>
+    <tr style="border-bottom:1px solid var(--border2);"><td style="padding:5px 10px;">Full Heal</td><td style="text-align:right;padding:5px 10px;">100</td><td style="padding:5px 10px;">Full Restore</td><td style="text-align:right;padding:5px 10px;">225</td></tr>
+    <tr><td style="padding:5px 10px;">Revive</td><td style="text-align:right;padding:5px 10px;">300</td><td style="padding:5px 10px;">Max Revive</td><td style="text-align:right;padding:5px 10px;">500</td></tr>
+  </tbody>
+</table>
+<br><span style="font-size:11px;color:var(--text2);">* Status heal = Antidote, Burn Heal, Ice Heal, Paralyze Heal, or Awakening (15 each).</span></div>
       </div>
 
       <div class="mech-rule-card">
@@ -1580,7 +1603,7 @@
           <div class="mech-rule-title">Evasion &amp; Stress Slots — by Type</div>
           <span class="badge badge-gold">Pokémon Rule</span>
         </div>
-        <div class="mech-rule-body">Starting Evasion is based on average Speed per type. Stress Slots are based on average HP per type. Dual-type Pokémon use the average of both types, rounded down. Legendaries add +1 to both.<br><br>
+        <div class="mech-rule-body">Starting Evasion is based on average Speed per type. Stress Slots are based on average HP per type. A dual-type Pokémon <strong>splits</strong> the two &mdash; take your Evasion from one of its types and your Stress from the other (whichever split favors you); you can't take both from the same type, and you never average them. Legendaries add +1 to both.<br><br>
 <table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:12px;">
   <thead><tr style="border-bottom:1px solid var(--border2);color:var(--accent);">
     <th style="text-align:left;padding:6px 10px;">Type</th>
