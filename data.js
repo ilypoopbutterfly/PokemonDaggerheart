@@ -7,7 +7,7 @@ var data = {
     "regionBlurb": "A large continent surrounded by ocean with scattered islands. The region sits inside what appears to be a vast, seamless world.",
     "tone": "Coming of age, self-discovery, bonds between trainer and Pokemon, wonder, mystery beneath the surface.",
     "conflict": "Eight Gyms stand between the trainers and whatever future they are building toward. The journey north and counter-clockwise across the continent will test who they are and who they want to become.",
-    "lore": "Coming of Age Tradition: In Mimic, every young person undergoes a cherished rite \u2014 receiving their first Pokemon and setting out to conquer the region's 8 Gyms. The journey is less about raw victory and more about self-discovery. The age of departure differs by geography: northern half sets out at 16, southern half at 18 due to harsher terrain.<br><br><strong>Governance:</strong> Mimic has no king, no capital, and no central government — it is a confederation of self-governing towns. Each town governs however suits it: Bogen has no mayor but a Council of Three, chosen by trust and role; elsewhere elders, farm granges, or elected stewards. In Gym towns the Gym Leader often carries the soft authority.<br><br>Above the towns, the region divides into four zones by quadrant, each led by a <strong>Cardinal</strong> — of the Northeast, Northwest, Southwest, and Southeast. A Cardinal need not live in their zone's starter town, only somewhere within the zone. The fifth seat belongs to the <strong>Champion</strong>, who holds Zunge Isle and Ruff Island — the islands answer to no quadrant.<br><br><strong>The annual gathering:</strong> once a year the five convene in Volt City, the largest city in Mimic. Nothing binds until all five seats are filled — and the Champion is the last to sit. There is no king in Mimic. There is a Champion.<br><br><strong>The League:</strong> the region's battle ladder climbs from the eight Gyms to the <strong>Elite Four</strong> and finally the Champion. The Elite Four are housed on <strong>Zunge Isle</strong>, faced in order &mdash; a <strong>Steel</strong>-type master, then <strong>Ghost</strong>, then <strong>Dragon</strong>, then <strong>Fairy</strong>.",
+    "lore": "Coming of Age Tradition: In Mimic, every young person undergoes a cherished rite \u2014 receiving their first Pokemon and setting out to conquer the region's 8 Gyms. The journey is less about raw victory and more about self-discovery. The age of departure differs by geography: northern half sets out at 16, southern half at 18 due to harsher terrain.<br><br><strong>The table:</strong> Mimic is a wholly <strong>vegetarian</strong> world — no one eats meat or eggs. Bean burgers, tofu dishes, dairy, grains, and the produce of a thousand farms feed the region; Pokémon are partners, never a meal.<br><br><strong>Governance:</strong> Mimic has no king, no capital, and no central government — it is a confederation of self-governing towns. Each town governs however suits it: Bogen has no mayor but a Council of Three, chosen by trust and role; elsewhere elders, farm granges, or elected stewards. In Gym towns the Gym Leader often carries the soft authority.<br><br>Above the towns, the region divides into four zones by quadrant, each led by a <strong>Cardinal</strong> — of the Northeast, Northwest, Southwest, and Southeast. A Cardinal need not live in their zone's starter town, only somewhere within the zone. The fifth seat belongs to the <strong>Champion</strong>, who holds Zunge Isle and Ruff Island — the islands answer to no quadrant.<br><br><strong>The annual gathering:</strong> once a year the five convene in Volt City, the largest city in Mimic. Nothing binds until all five seats are filled — and the Champion is the last to sit. There is no king in Mimic. There is a Champion.<br><br><strong>The League:</strong> the region's battle ladder climbs from the eight Gyms to the <strong>Elite Four</strong> and finally the Champion. The Elite Four are housed on <strong>Zunge Isle</strong>, faced in order &mdash; a <strong>Steel</strong>-type master, then <strong>Ghost</strong>, then <strong>Dragon</strong>, then <strong>Fairy</strong>.",
     "vocations": "Master \u00b7 Researcher \u00b7 Breeder \u00b7 Specialist \u00b7 Entertainer \u00b7 Rebel",
     "zones": [
       { "n": 1, "quadrant": "Northeast", "towns": "Midori, Boosong", "professor": "Thaniel Sheng", "starters": "Rowlet, Torchic, Piplup", "desc": "A bamboo wetlands town on the northern bank of The Mizu. Lanterns set on the river at dawn \u2014 the ceremony is calm, communal, and riverine." },
@@ -254,6 +254,50 @@ var data = {
       "personality": "The Bellossom Hollow Center's new nurse, recently arrived to replace the long-standing previous one. Pale blue hair — bangs and two spiral pigtails — tucked under black scrubs and a mask, with silver eyes and a permanently out-of-it air. Nice enough, trained to hand out basic Pokémon meds and run the counter. Kind, competent, easy to trust.",
       "notes": "",
       "id": 22
+    },
+    {
+      "name": "Gyome",
+      "town": "Bellossom Hollow",
+      "type": "NPC",
+      "role": "Head of Motley Gold — the town's grange voice",
+      "location": "Motley Gold farmhouse, Bellossom Hollow",
+      "pokemon": "",
+      "personality": "Runs Motley Gold, the biggest farm in the Blossomlands — honey and cider from the Motley apple orchard, whose fruit only grows near the Motley Wilds. First among equals on the town's farmers' grange, which makes him the closest thing Bellossom Hollow has to a leader and its public face.",
+      "notes": "",
+      "id": 23
+    },
+    {
+      "name": "Miss Posy",
+      "town": "Bellossom Hollow",
+      "type": "NPC",
+      "role": "Keeper of the Honeybell Inn (B&B)",
+      "location": "The Honeybell Inn, Bellossom Hollow",
+      "pokemon": "Machoke",
+      "personality": "Late 60s, soft and round, silver bun, always dusted with flour and smelling of fresh bread. Treats every guest like a returning grandchild and feeds you before you ask — and knows everything happening in town. Her hulking Machoke does all the heavy lifting: luggage, laundry, kneading dough, gentle as a lamb.",
+      "notes": "",
+      "id": 24
+    },
+    {
+      "name": "Roscoe",
+      "town": "Bellossom Hollow",
+      "type": "NPC",
+      "role": "PokéMart clerk",
+      "location": "The PokéMart, Bellossom Hollow",
+      "pokemon": "Slowpoke",
+      "personality": "Late 20s, lanky, surf-shop energy stranded in a farm town — flip-flops, leaning on the counter, dry and unhurried. Knows exactly where everything is and won't push a sale. Keeps a lazy Slowpoke by the register that half the town forgets is there.",
+      "notes": "",
+      "id": 25
+    },
+    {
+      "name": "Lowell",
+      "town": "Bellossom Hollow",
+      "type": "NPC",
+      "role": "Local kid — age 16",
+      "location": "Bellossom Hollow",
+      "pokemon": "",
+      "personality": "A restless 16-year-old, a couple of years shy of his coming-of-age journey and itching for it. His mother Rebecca works long hours at the Honeybell Inn, so her Zangoose has half-raised him — and still fusses over him like a cub, to his mortification. Lately he's been caught tagging a strange little symbol around town.",
+      "notes": "",
+      "id": 26
     }
   ],
   "players": [
