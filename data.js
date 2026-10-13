@@ -303,12 +303,23 @@ var data = {
       "name": "Hank",
       "town": "Bellossom Hollow",
       "type": "NPC",
-      "role": "Town officer — Bellossom Hollow",
-      "location": "Bellossom Hollow",
+      "role": "Town officer — south gate, Bellossom Hollow",
+      "location": "The south gate, Bellossom Hollow",
       "pokemon": "Dewpider",
-      "personality": "Bellossom Hollow's local law — a well-meaning but clumsy young officer, forever flustered by a crush he won't name and fumbling his own reports even when he's trying his hardest. Earnest to a fault. His Dewpider bubbles along at his side.",
+      "personality": "Bellossom Hollow's law at the south gate — a well-meaning but clumsy young officer, forever flustered by a hopeless crush on Rebecca (Lowell's mother) and fumbling his own reports even when he's trying his hardest. Earnest to a fault, and the softer half of the town's two-officer watch (his tougher partner Victor holds the north gate). His Dewpider bubbles along at his side.",
       "notes": "",
       "id": 27
+    },
+    {
+      "name": "Victor",
+      "town": "Bellossom Hollow",
+      "type": "NPC",
+      "role": "Town officer — north gate, Bellossom Hollow",
+      "location": "The north gate, Bellossom Hollow",
+      "pokemon": "Nidorino",
+      "personality": "Bellossom Hollow's other officer, and the tougher one — he holds the north gate while Hank minds the south. No-nonsense, hard to rattle, nothing slips past him. His Nidorino is as unyielding as he is.",
+      "notes": "",
+      "id": 28
     }
   ],
   "players": [
