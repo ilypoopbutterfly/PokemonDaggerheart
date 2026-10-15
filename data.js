@@ -356,7 +356,7 @@ var data = {
       "char": "Coral Kai",
       "cls": "Breeder",
       "specialty": "Pokemon medicine and care \u2014 the Pokemon doctor of a people doctor family",
-      "home": "Northwest Mimic (Zone 2)",
+      "home": "Volt City",
       "age": "17",
       "summary": "The Pok\u00e9mon doctor of a big family of people doctors. Beach-lover and well-traveled, she dreams of opening an aquarium breeding center in the middle of the continent \u2014 far from any ocean.",
       "pokemon": "Popplio",
@@ -637,7 +637,7 @@ var data = {
       "trainer": "Briar",
       "species": "Farfetch'd",
       "nickname": "",
-      "gender": "",
+      "gender": "Male",
       "shiny": false,
       "ball": "Great Ball",
       "session": "Session 3",
@@ -647,7 +647,7 @@ var data = {
     },
     {
       "trainer": "Coral",
-      "species": "Mystery Egg",
+      "species": "Ponyta",
       "nickname": "",
       "gender": "",
       "shiny": false,
@@ -655,7 +655,19 @@ var data = {
       "session": "Session 3",
       "experience": "",
       "id": 512,
-      "sprite": ""
+      "sprite": "images/sprite-512.png"
+    },
+    {
+      "trainer": "Nea",
+      "species": "Bulbasaur",
+      "nickname": "",
+      "gender": "Male",
+      "shiny": false,
+      "ball": "Codi's Poké Ball",
+      "session": "Session 5",
+      "experience": "Twelve Years at the Door — waited in Earl's cabin long after Codi was gone, turning away every passing trainer until it chose Nea itself; it travels with Codi's old Poké Ball and a photo of him. Useful for patient loyalty, grief that has finally decided to move, and knowing exactly who to trust.",
+      "id": 513,
+      "sprite": "images/sprite-513.png"
     }
   ]
 };
